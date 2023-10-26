@@ -4,7 +4,9 @@
  */
 package UserInterface;
 
-import Professor.ProfessorDirectory;
+import Courses.CourseCreation;
+import Professor.ProfessorCourses;
+import Professor.ProfessorHistory;
 import Professor.ProfessorProfile;
 import java.awt.CardLayout;
 import java.util.List;
@@ -17,16 +19,17 @@ import javax.swing.JPanel;
 public class MainJFrame extends javax.swing.JFrame {
 
     
-    private Professor.ProfessorDirectory pd;
+    private Professor.ProfessorCourses pd;
+    private Courses.CourseCreation cc; 
+    private Professor.ProfessorHistory prof_h;
+
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
-        this.pd = new ProfessorDirectory();
-        Professor.ProfessorProfile p1 = pd.AddProfessor("Khaled","Burgara","khaledburgara@northeastern.edu","01","Java Development",27);
-        Professor.ProfessorProfile p2 = pd.AddProfessor("Manuel","Montrond","manuelmontrond@northeastern.edu","02","Data",17);
-        Professor.ProfessorProfile p3 = pd.AddProfessor("Jessica","Fisher","jessicafisher@northeastern.edu","02","Co_op",15);
+        this.prof_h = new ProfessorHistory();
+        
     }
 
     /**
@@ -124,8 +127,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void ProfessorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfessorBtnActionPerformed
         // TODO add your handling code here:
-        ProfessorJPanel panel = new ProfessorJPanel(userProcessContainer, pd);
-        userProcessContainer.add("ProfessorJPanel", panel);
+        ViewJPanel panel = new ViewJPanel(userProcessContainer,prof_h,cc,pd);
+        userProcessContainer.add("ViewJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_ProfessorBtnActionPerformed

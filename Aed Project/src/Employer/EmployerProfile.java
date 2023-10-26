@@ -63,5 +63,14 @@ public class EmployerProfile {
     public void setEmployer_AvailableSpots(int Employer_AvailableSpots) {
         this.Employer_AvailableSpots = Employer_AvailableSpots;
     }
+
+    public EmployerProfile(String Employer_id, String Employer_name, String Employer_HiringManager_name, String Employer_AvailabilityRole, String Employer_feedback, int Employer_AvailableSpots) {
+        this.Employer_id = Employer_id;
+        this.Employer_name = Employer_name;
+        this.Employer_HiringManager_name = Employer_HiringManager_name;
+        this.Employer_AvailabilityRole = Employer_AvailabilityRole;
+        this.Employer_feedback = Employer_feedback;
+        this.Employer_AvailableSpots = Employer_AvailableSpots;
+    }
     
 }

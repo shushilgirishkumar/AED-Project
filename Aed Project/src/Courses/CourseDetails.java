@@ -5,6 +5,7 @@
 package Courses;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -18,12 +19,38 @@ public class CourseDetails {
     private String Course_code;
     private String Term_offered;
     private String professor_name;
-    private String Core_requisite;
-    private String pre_requisite;
     private String Coursename;
     private String Course_Type;
-    private Date startDateTime;
-    private Date endDateTime;
+    private String startDateTime;
+    private String endDateTime;
+    private String Course_grade;
+    private double Course_rating;
+    private double Course_credit_fees;
+    private int Course_credit;
+    private ArrayList<String> Course_Seats;
+    public String getCourse_grade() {
+        return Course_grade;
+    }
+
+    public void setCourse_grade(String Course_grade) {
+        this.Course_grade = Course_grade;
+    }
+
+    public double getCourse_rating() {
+        return Course_rating;
+    }
+
+    public void setCourse_rating(double Course_rating) {
+        this.Course_rating = Course_rating;
+    }
+
+    public int getCourse_credit() {
+        return Course_credit;
+    }
+
+    public void setCourse_credit(int Course_credit) {
+        this.Course_credit = Course_credit;
+    }
 
     public String getCRN() {
         return CRN;
@@ -32,9 +59,6 @@ public class CourseDetails {
     public void setCRN(String CRN) {
         this.CRN = CRN;
     }
-
- 
-
     public String getTerm_offered() {
         return Term_offered;
     }
@@ -42,31 +66,6 @@ public class CourseDetails {
     public void setTerm_offered(String Term_offered) {
         this.Term_offered = Term_offered;
     }
-
-    public String getProfessor_name() {
-        return professor_name;
-    }
-
-    public void setProfessor_name(String professor_name) {
-        this.professor_name = professor_name;
-    }
-
-    public String getCore_requisite() {
-        return Core_requisite;
-    }
-
-    public void setCore_requisite(String Core_requisite) {
-        this.Core_requisite = Core_requisite;
-    }
-
-    public String getPre_requisite() {
-        return pre_requisite;
-    }
-
-    public void setPre_requisite(String pre_requisite) {
-        this.pre_requisite = pre_requisite;
-    }
-
     public String getCourse_code() {
         return Course_code;
     }
@@ -84,19 +83,19 @@ public class CourseDetails {
     }
 
   
-    public Date getStartDateTime() {
+    public String getStartDateTime() {
         return startDateTime;
     }
 
-    public void setStartDateTime(Date startDateTime) {
+    public void setStartDateTime(String startDateTime) {
         this.startDateTime = startDateTime;
     }
 
-    public Date getEndDateTime() {
+    public String getEndDateTime() {
         return endDateTime;
     }
 
-    public void setEndDateTime(Date endDateTime) {
+    public void setEndDateTime(String endDateTime) {
         this.endDateTime = endDateTime;
     }
 
@@ -108,20 +107,7 @@ public class CourseDetails {
         this.Course_Type = Course_Type;
     }
 
-    public CourseDetails(String Coursename, String pre_requisite, String Core_requisite, String Course_code, String CRN, String professor_name, String Term_offered, String startDateTimeString, String endDateTimeString ,String type) throws ParseException{
-        this.Coursename = Coursename;
-        this.pre_requisite = pre_requisite;
-        this.Core_requisite = Core_requisite;
-        this.Course_code = Course_code;
-        this.CRN = CRN;
-        this.Course_Type = type;
-        this.professor_name = professor_name;
-        this.Term_offered = Term_offered;
-        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
-        this.startDateTime = dateTimeFormat.parse(startDateTimeString);
-        this.endDateTime = dateTimeFormat.parse(endDateTimeString);
-    }
-    public String getCourseDuration(Date startdate,Date enddate){
+  public String getCourseDuration(Date startdate,Date enddate){
         try{
              
             long diff = enddate.getTime() - startdate.getTime();
@@ -132,5 +118,20 @@ public class CourseDetails {
             return "Invalid date format or calculation error.";
         }
     }
- 
+
+    public CourseDetails(String CRN, String Course_code, String Term_offered, String professor_name, String Coursename, String Course_Type, String startDateTime, String endDateTime, int Course_credit) {
+        this.CRN = CRN;
+        this.Course_code = Course_code;
+        this.Term_offered = Term_offered;
+        this.professor_name = professor_name;
+        this.Coursename = Coursename;
+        this.Course_Type = Course_Type;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+//        this.Course_grade = Course_grade;
+//        this.Course_rating = Course_rating;
+        this.Course_credit_fees = 1700;
+        this.Course_credit = Course_credit;
+    }
+    
 }

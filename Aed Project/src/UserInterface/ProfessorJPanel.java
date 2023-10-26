@@ -4,8 +4,10 @@
  */
 package UserInterface;
 
-import Professor.ProfessorDirectory;
+import Professor.ProfessorCourses;
+import Professor.ProfessorHistory;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,25 +21,30 @@ public class ProfessorJPanel extends javax.swing.JPanel {
      * Creates new form ProfessorJPanel
      */
     private JPanel userProcessContainer;
-    private Professor.ProfessorDirectory pd;
-    public ProfessorJPanel(JPanel userProcessContainer, ProfessorDirectory pd) {
+    private Professor.ProfessorCourses pd;
+    private Professor.ProfessorHistory ph;
+    private Courses.CourseCreation cc;
+    public ProfessorJPanel(JPanel userProcessContainer, ProfessorHistory ph, Courses.CourseCreation cc,ProfessorCourses pd) {
          initComponents();
         this.userProcessContainer = userProcessContainer;
+        this.ph = ph;
+        this.cc = cc;
         this.pd = pd;
         populateTable();
     }
     private void populateTable() {
-        DefaultTableModel dtm = (DefaultTableModel) tbProfessorList.getModel();
-        dtm.setRowCount(0);
-        for(Professor.ProfessorProfile p: pd.getProfessorlists()) {
-            Object[] row = new Object[4];
-            row[0] = p.getProf_id();
-            row[1] = p.getProf_first_name();
-            row[2] = p.getProf_speciality();
-            row[3] = p.getProf_experience();
-            
-            dtm.addRow(row);
-        }
+//        DefaultTableModel dtm = (DefaultTableModel) tbProfessorList.getModel();
+//        dtm.setRowCount(0);
+//        for(Professor.ProfessorProfile p: pd.getProfessorlists()) {
+//            Object[] row = new Object[5];
+//            row[0] = p.getProf_id();
+//            row[1] = p.getProf_first_name();
+//            row[2] = p.getProf_speciality();
+//            row[3] = p.getProf_experience();
+//            row[4] = p.getProf_resident();
+//            
+//            dtm.addRow(row);
+//        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,17 +58,18 @@ public class ProfessorJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbProfessorList = new javax.swing.JTable();
         BackBtn = new javax.swing.JButton();
+        Prof_Courses = new javax.swing.JButton();
 
         tbProfessorList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Professor id", "Professor name", "speciality", "experience"
+                "Professor id", "Professor name", "speciality", "experience", "Country"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -77,15 +85,27 @@ public class ProfessorJPanel extends javax.swing.JPanel {
             }
         });
 
+        Prof_Courses.setText("Professor Courses");
+        Prof_Courses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Prof_CoursesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(339, 339, 339)
+                        .addComponent(Prof_Courses)))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -95,7 +115,9 @@ public class ProfessorJPanel extends javax.swing.JPanel {
                 .addComponent(BackBtn)
                 .addGap(69, 69, 69)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(135, 135, 135))
+                .addGap(53, 53, 53)
+                .addComponent(Prof_Courses)
+                .addGap(60, 60, 60))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -106,9 +128,22 @@ public class ProfessorJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_BackBtnActionPerformed
 
+    private void Prof_CoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Prof_CoursesActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tbProfessorList.getSelectedRow();
+          if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this,"Please Select a row to view");
+            return;
+        }
+//        DefaultTableModel model = (DefaultTableModel) tbProfessorList.getModel();
+//        Professor.ProfessorProfile professor_select = (ProfessorProfile)model.getValueAt(selectedRowIndex, 0);
+          
+    }//GEN-LAST:event_Prof_CoursesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackBtn;
+    private javax.swing.JButton Prof_Courses;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbProfessorList;
     // End of variables declaration//GEN-END:variables

@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package UserInterface.LoginPage;
+package UserInterface.SignupPage;
 
 /**
  *
  * @author shush
  */
-public class StudentLoginJPanel extends javax.swing.JPanel {
+public class StudentSignupJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form StudentLoginJPanel
+     * Creates new form StudentSignupJPanel
      */
-    public StudentLoginJPanel() {
+    public StudentSignupJPanel() {
         initComponents();
     }
 
