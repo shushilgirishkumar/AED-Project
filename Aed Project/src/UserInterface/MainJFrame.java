@@ -52,7 +52,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        jPanel1.setBackground(new java.awt.Color(255, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         ProfessorBtn.setText("Professor Profle");
         ProfessorBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -127,8 +127,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void ProfessorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfessorBtnActionPerformed
         // TODO add your handling code here:
-        ViewJPanel panel = new ViewJPanel(userProcessContainer,prof_h,cc,pd);
-        userProcessContainer.add("ViewJPanel", panel);
+        UserInterface.LoginPage.ProfessorLoginPage panel = new UserInterface.LoginPage.ProfessorLoginPage(userProcessContainer,prof_h,cc,pd);
+        userProcessContainer.add("ProfessorLoginPage", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_ProfessorBtnActionPerformed

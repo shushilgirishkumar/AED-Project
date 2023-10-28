@@ -18,7 +18,12 @@ public class CourseDetails {
     private String CRN;
     private String Course_code;
     private String Term_offered;
-    private String professor_name;
+    private String course_professor_name;
+    private String course_description;
+    private String course_department;
+    private String course_prerequisite;
+    private int course_seats;
+    private int no_ofstudentsreg;
     private String Coursename;
     private String Course_Type;
     private String startDateTime;
@@ -27,7 +32,6 @@ public class CourseDetails {
     private double Course_rating;
     private double Course_credit_fees;
     private int Course_credit;
-    private ArrayList<String> Course_Seats;
     public String getCourse_grade() {
         return Course_grade;
     }
@@ -38,6 +42,14 @@ public class CourseDetails {
 
     public double getCourse_rating() {
         return Course_rating;
+    }
+
+    public String getCourse_department() {
+        return course_department;
+    }
+
+    public void setCourse_department(String course_department) {
+        this.course_department = course_department;
     }
 
     public void setCourse_rating(double Course_rating) {
@@ -70,10 +82,51 @@ public class CourseDetails {
         return Course_code;
     }
 
+    public String getCourse_professor_name() {
+        return course_professor_name;
+    }
+
+    public void setCourse_professor_name(String course_professor_name) {
+        this.course_professor_name = course_professor_name;
+    }
+
+    public int getCourse_seats() {
+        return course_seats;
+    }
+
+    public void setCourse_seats(int course_seats) {
+        this.course_seats = course_seats;
+    }
+
     public void setCourse_code(String Course_code) {
         this.Course_code = Course_code;
     }
 
+    public String getCourse_description() {
+        return course_description;
+    }
+
+    public void setCourse_description(String course_description) {
+        this.course_description = course_description;
+    }
+
+    public String getCourse_prerequisite() {
+        return course_prerequisite;
+    }
+
+    public void setCourse_prerequisite(String course_prerequisite) {
+        this.course_prerequisite = course_prerequisite;
+    }
+
+    public int getNo_ofstudentsreg() {
+        return no_ofstudentsreg;
+    }
+
+    public void setNo_ofstudentsreg(int no_ofstudentsreg) {
+        this.no_ofstudentsreg = no_ofstudentsreg;
+    }
+
+  
     public String getCoursename() {
         return Coursename;
     }
@@ -119,19 +172,24 @@ public class CourseDetails {
         }
     }
 
-    public CourseDetails(String CRN, String Course_code, String Term_offered, String professor_name, String Coursename, String Course_Type, String startDateTime, String endDateTime, int Course_credit) {
+    public CourseDetails(String CRN, String Course_code, String Term_offered, String professor_name, String Coursename, String coursedepartment, String startDateTime, String endDateTime,String course_type,String course_description,int studentsregistered) {
         this.CRN = CRN;
         this.Course_code = Course_code;
         this.Term_offered = Term_offered;
-        this.professor_name = professor_name;
+        this.course_professor_name = professor_name;
         this.Coursename = Coursename;
-        this.Course_Type = Course_Type;
+        this.course_department = coursedepartment;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
-//        this.Course_grade = Course_grade;
-//        this.Course_rating = Course_rating;
+        this.Course_Type = course_type;
+        this.course_description = course_description;
+        this.Course_grade = null;
+        this.Course_rating = Double.NaN;
         this.Course_credit_fees = 1700;
-        this.Course_credit = Course_credit;
+        this.Course_credit = 4;
+        this.course_seats = 20;
+        this.no_ofstudentsreg = studentsregistered;
+//        this.isregcourse = course_registered;
     }
     
 }
