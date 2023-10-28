@@ -60,6 +60,6 @@ public class ProfessorCourses {
     public void addCourse(CourseDetails course) {
         this.courselists.add(course);
     }
-   
+
 
 }

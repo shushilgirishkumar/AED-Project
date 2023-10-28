@@ -88,7 +88,6 @@ public class ProfessorProfile {
     public void setProf_experience(int Prof_experience) {
         this.Prof_experience = Prof_experience;
     }
-
     public ArrayList<String> getProf_oldPassword() {
         return prof_oldPassword;
     }

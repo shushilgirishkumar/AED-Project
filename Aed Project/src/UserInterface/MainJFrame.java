@@ -127,6 +127,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void ProfessorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfessorBtnActionPerformed
         // TODO add your handling code here:
+
         UserInterface.LoginPage.ProfessorLoginPage panel = new UserInterface.LoginPage.ProfessorLoginPage(userProcessContainer,prof_h,cc,pd);
         userProcessContainer.add("ProfessorLoginPage", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
