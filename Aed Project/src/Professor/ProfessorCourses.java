@@ -48,4 +48,21 @@ public class ProfessorCourses {
     public void addCourse(CourseDetails course) {
         this.courselists.add(course);
     }
+     public CourseDetails RegCinProfCourse(CourseDetails c1){
+        for(CourseDetails c : this.courselists){
+            if(c.getCourse_code().equals(c1.getCourse_code())){
+                return c;
+            }
+        }
+        return null;
+    }
+     public CourseDetails RegCinProfCoursebycode(String code){
+        for(CourseDetails c : this.courselists){
+            if(c.getCourse_code().equals(code)){
+                return c;
+            }
+            
+        }
+        return null;
+    }
 }

@@ -5,9 +5,11 @@
 package UserInterface.LoginPage;
 
 import Professor.ProfessorHistory;
-import Student.Student;
+import Student.Studentde;
 import UserInterface.HomePage.ProfessorHomePageJPanel;
 import java.awt.CardLayout;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,14 +23,21 @@ public class ProfessorLoginPage extends javax.swing.JPanel {
     /**
      * Creates new form ProfessorLoginPage
      */
-     private ArrayList<Student> st;
-    private JPanel userProcessContainer;
-    private Professor.ProfessorHistory ph;
-    public ProfessorLoginPage(JPanel userProcessContainer,ProfessorHistory ph,ArrayList<Student> s) {
+     Professor.ProfessorHistory ph;
+     Employer.EmployerHistory eh;
+    Professor.ProfessorHistory history;
+        Professor.ProfessorHistory coursehistory;
+        Professor.ProfessorHistory regcoursehistory;
+         Professor.ProfessorHistory sugg;
+         JPanel userProcessContainer;
+    
+     public ProfessorLoginPage(JPanel userProcessContainer,ProfessorHistory ph,ProfessorHistory history,Professor.ProfessorHistory coursehistory,Professor.ProfessorHistory regcoursehistory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ph = ph;
-        this.st = s;
+        this.history = history;
+        this.regcoursehistory = regcoursehistory;
+        this.coursehistory = coursehistory;
     }
 
     /**
@@ -50,6 +59,8 @@ public class ProfessorLoginPage extends javax.swing.JPanel {
         BackBtn = new javax.swing.JButton();
         SignupBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(153, 153, 153));
+
         lbLname.setText("Password:");
 
         lbFname.setText("Professor neuid:");
@@ -67,6 +78,8 @@ public class ProfessorLoginPage extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Professor Login");
 
         ResetPasswordBtn.setText("Reset Password?");
@@ -111,21 +124,21 @@ public class ProfessorLoginPage extends javax.swing.JPanel {
                                         .addComponent(txtneuid)
                                         .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(376, 376, 376)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(103, 103, 103)
                         .addComponent(BackBtn)
                         .addGap(152, 152, 152)
-                        .addComponent(SignupBtn)))
-                .addContainerGap(270, Short.MAX_VALUE))
+                        .addComponent(SignupBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 834, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addGap(76, 76, 76)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -161,10 +174,15 @@ public class ProfessorLoginPage extends javax.swing.JPanel {
         Professor.ProfessorProfile p = ph.SearchProfessorbyneuid(prof_neuid);
         if(p==null){
             JOptionPane.showMessageDialog(this,"Access Denied");
+            
         }
         else{
             if(p.getProf_password().equals(prof_password)){
                 JOptionPane.showMessageDialog(this,"Access Granted");
+                 ProfessorHomePageJPanel panel = new ProfessorHomePageJPanel(userProcessContainer,ph,prof_neuid,history, coursehistory, regcoursehistory);
+                  userProcessContainer.add("ProfessorHomePageJPanel", panel);
+                   CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer); 
             }
             else{
                 JOptionPane.showMessageDialog(this,"Incorrect password!! Please Try again");
@@ -172,10 +190,7 @@ public class ProfessorLoginPage extends javax.swing.JPanel {
         }
          txtneuid.setText("");
          txtPassword.setText("");
-         ProfessorHomePageJPanel panel = new ProfessorHomePageJPanel(userProcessContainer,ph,prof_neuid,st);
-         userProcessContainer.add("ProfessorHomePageJPanel", panel);
-         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-         layout.next(userProcessContainer); 
+        
          
 
     }//GEN-LAST:event_LoginBtnActionPerformed
@@ -204,6 +219,8 @@ public class ProfessorLoginPage extends javax.swing.JPanel {
          layout.next(userProcessContainer); 
     }//GEN-LAST:event_SignupBtnActionPerformed
 
+    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackBtn;

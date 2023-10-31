@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jPasswordField1"/>
+      </Properties>
+    </Component>
+  </NonVisualComponents>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -36,7 +43,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel11" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jLabel12" alignment="0" pref="138" max="32767" attributes="0"/>
+                      <Component id="jLabel12" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabel14" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabel15" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabel16" alignment="0" max="32767" attributes="0"/>
@@ -49,18 +56,20 @@
                   <Component id="jLabel21" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="txtSemster" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtCoursecode" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtCourseName" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtCredits" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtStartDate" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtEndDate" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtSeats" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jScrollPane1" pref="245" max="32767" attributes="0"/>
-                  <Component id="txtCourseType" max="32767" attributes="0"/>
-                  <Component id="txtCRN1" min="-2" pref="239" max="-2" attributes="0"/>
-                  <Component id="txtcoursedep" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txtcode" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtCourseName" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtCredits" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtStartDate" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtEndDate" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="263" max="32767" attributes="0"/>
+                      <Component id="txtcrn" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtcoursedep" alignment="0" min="-2" pref="234" max="-2" attributes="0"/>
+                      <Component id="txtSemster" max="32767" attributes="0"/>
+                      <Component id="txtSeats" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="txtCourseType" min="-2" pref="234" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
           </Group>
@@ -71,7 +80,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="31" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="jLabel11" min="-2" pref="27" max="-2" attributes="0"/>
@@ -89,16 +98,16 @@
                       <Component id="jLabel16" min="-2" pref="26" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel17" min="-2" pref="26" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel18" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="txtCRN1" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="txtcrn" min="-2" pref="26" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtCoursecode" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="txtcode" min="-2" pref="26" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="txtcoursedep" min="-2" pref="21" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtcoursedep" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="txtSemster" min="-2" pref="26" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="txtCourseName" min="-2" pref="26" max="-2" attributes="0"/>
@@ -108,19 +117,16 @@
                       <Component id="txtStartDate" min="-2" pref="26" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="txtEndDate" min="-2" pref="26" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="txtSeats" min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="txtSeats" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace pref="26" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                              <Component id="jLabel21" min="-2" pref="26" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="txtCourseType" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="jLabel21" alignment="1" min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="txtCourseType" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
@@ -132,12 +138,12 @@
                               <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="35" max="32767" attributes="0"/>
                       <Component id="CreateCourseBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="BackBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
@@ -159,8 +165,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtEndDate">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtSeats">
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
         <Property name="text" type="java.lang.String" value="Course CRN:"/>
@@ -176,9 +180,9 @@
         <Property name="text" type="java.lang.String" value="Course Name:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCoursecode">
+    <Component class="javax.swing.JTextField" name="txtcode">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCoursecodeActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtcodeActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel15">
@@ -190,14 +194,14 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel16">
       <Properties>
-        <Property name="text" type="java.lang.String" value="StartDate"/>
+        <Property name="text" type="java.lang.String" value="StartDate(MM/dd/yyyy hh:mm):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCourseName">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel17">
       <Properties>
-        <Property name="text" type="java.lang.String" value="EndDate:"/>
+        <Property name="text" type="java.lang.String" value="EndDate(MM/dd/yyyy hh:mm):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCredits">
@@ -240,11 +244,6 @@
         <Property name="text" type="java.lang.String" value="Course Type:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCourseType">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCourseTypeActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="BackBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Back"/>
@@ -253,9 +252,9 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BackBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCRN1">
+    <Component class="javax.swing.JTextField" name="txtcrn">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCRN1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtcrnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">
@@ -268,7 +267,39 @@
         <Property name="text" type="java.lang.String" value="Course department:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="txtcoursedep">
+    <Component class="javax.swing.JSpinner" name="txtSeats">
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="txtSeatsStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="txtcoursedep">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="SELECT"/>
+            <StringItem index="1" value="Information Systems"/>
+            <StringItem index="2" value="Software Engineering"/>
+            <StringItem index="3" value="Data Architecture Management"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="txtCourseType">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="SELECT"/>
+            <StringItem index="1" value="OFFLINE"/>
+            <StringItem index="2" value="ONLINE"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

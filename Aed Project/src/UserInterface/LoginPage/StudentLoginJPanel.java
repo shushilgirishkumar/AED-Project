@@ -3,18 +3,42 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package UserInterface.LoginPage;
-
+import Professor.ProfessorHistory;
+import Student.Studentde;
+import UserInterface.HomePage.ProfessorHomePageJPanel;
+import java.awt.CardLayout;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 /**
  *
  * @author shush
  */
 public class StudentLoginJPanel extends javax.swing.JPanel {
 
+    Professor.ProfessorHistory ph;
+     Employer.EmployerHistory eh;
+    Professor.ProfessorHistory history;
+        Professor.ProfessorHistory coursehistory;
+        Professor.ProfessorHistory regcoursehistory;
+         Professor.ProfessorHistory sugg;
+         JPanel userProcessContainer;
+         String p_neuid;
+    
     /**
-     * Creates new form StudentLoginJPanel
+     * Creates new form StudentLoginJPanel//userProcessContainer, history,coursehistory,regcoursehistory, sugg
      */
-    public StudentLoginJPanel() {
+    public StudentLoginJPanel(JPanel userProcessContainer,ProfessorHistory history,ProfessorHistory ph, String p_neuid, ProfessorHistory coursehistory, ProfessorHistory regcoursehistory, ProfessorHistory sugg) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.regcoursehistory = regcoursehistory;
+        this.history = history;
+        this.coursehistory = coursehistory;
+        this.sugg = sugg;
+        this.ph = ph;
+        this.p_neuid = p_neuid;
     }
 
     /**
@@ -26,19 +50,110 @@ public class StudentLoginJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
+        jLabel1 = new javax.swing.JLabel();
+        LoginBtn = new javax.swing.JButton();
+        txtPassword = new javax.swing.JTextField();
+        txtneuid = new javax.swing.JTextField();
+        lbFname = new javax.swing.JLabel();
+        lbLname = new javax.swing.JLabel();
+        tnsignup = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(153, 153, 153));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Student Login");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 29, 720, 69));
+
+        LoginBtn.setText("Login");
+        LoginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginBtnActionPerformed(evt);
+            }
+        });
+        add(LoginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(451, 238, -1, -1));
+        add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(451, 182, 185, -1));
+
+        txtneuid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtneuidActionPerformed(evt);
+            }
+        });
+        add(txtneuid, new org.netbeans.lib.awtextra.AbsoluteConstraints(451, 148, 185, -1));
+
+        lbFname.setText("Student neuid:");
+        add(lbFname, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 151, -1, -1));
+
+        lbLname.setText("Password:");
+        add(lbLname, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 185, 84, -1));
+
+        tnsignup.setText("Sign-up");
+        tnsignup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tnsignupActionPerformed(evt);
+            }
+        });
+        add(tnsignup, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 238, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
+        // TODO add your handling code here:
+        int n=0;
+        String p_neuid = txtneuid.getText();
+        String p_password = txtPassword.getText();
+//        System.out.println(p_neuid);
+        for (Student.Studentde p : history.getHistory())
+        {
+             System.out.println(p.getNEUID());
+            if(p.getNEUID().equals(p_neuid) && p.getPassword().equals(p_password))
+            {
+                //         //        UserInterface.LoginPage.StudentLoginJPanel panel = new UserInterface.LoginPage.StudentLoginJPanel(userProcessContainer, history,ph, neuid, coursehistory,regcoursehistory, sugg);
+
+                JOptionPane.showMessageDialog(this,"Access Granted");
+                UserInterface.Studenth panel = new UserInterface.Studenth(userProcessContainer,history,ph,p_neuid,coursehistory,regcoursehistory,sugg);
+                userProcessContainer.add("Studenth", panel);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+                n++;
+//Studenth(JPanel userProcessContainer, ProfessorHistory history, ProfessorHistory ph, String p_neuid, ProfessorHistory coursehistory, ProfessorHistory regcoursehistory,  ProfessorHistory sugg) {
+            }
+        }
+              
+        if(n==0)
+        {
+                            JOptionPane.showMessageDialog(this,"Access Denied");
+                                n=0;
+        }
+        txtneuid.setText("");
+        txtPassword.setText("");
+        
+
+    }//GEN-LAST:event_LoginBtnActionPerformed
+
+    private void txtneuidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtneuidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtneuidActionPerformed
+
+    private void tnsignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tnsignupActionPerformed
+        // TODO add your handling code here:
+        
+         UserInterface.SignupPage.Studentsignup panel = new UserInterface.SignupPage.Studentsignup(userProcessContainer,  history,  ph,  p_neuid, coursehistory,  regcoursehistory,   sugg);
+         userProcessContainer.add("Studentsignup", panel);
+         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+         layout.next(userProcessContainer); 
+    }//GEN-LAST:event_tnsignupActionPerformed
+
+    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton LoginBtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lbFname;
+    private javax.swing.JLabel lbLname;
+    private javax.swing.JButton tnsignup;
+    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtneuid;
     // End of variables declaration//GEN-END:variables
 }

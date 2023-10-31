@@ -67,12 +67,12 @@
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="upload" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbWebsite_url" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="192" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="lbWebsite_url" min="-2" pref="137" max="-2" attributes="0"/>
+                                      <Component id="upload" min="-2" pref="149" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="77" max="32767" attributes="0"/>
+                                  <EmptySpace pref="89" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="txtWebsite_url" alignment="0" pref="188" max="32767" attributes="0"/>
                                       <Component id="imagefile" alignment="0" max="32767" attributes="0"/>
@@ -124,8 +124,8 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="upload" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="imagefile" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="upload" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                                   <Component id="btnSavePerson" min="-2" max="-2" attributes="0"/>
@@ -161,14 +161,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSavePersonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="upload">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Update Profile picture:"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="uploadActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="lbLname">
           <Properties>
             <Property name="text" type="java.lang.String" value="HiringManager name:"/>
@@ -201,6 +193,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LogoutBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="upload">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Update Profile picture:"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="uploadActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

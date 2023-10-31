@@ -5,10 +5,11 @@
 package UserInterface.HomePage;
 
 
+import Courses.CourseDetails;
 import Professor.ProfessorCourses;
 import Professor.ProfessorHistory;
 import Professor.ProfessorProfile;
-import Student.Student;
+import Student.Studentde;
 import java.awt.CardLayout;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -25,32 +26,36 @@ public class ProfessorHomePageJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ProfessorHomePageJPanel
      */
-    private ArrayList<Student> st;
+    Professor.ProfessorHistory coursehistory;
+    Professor.ProfessorHistory regcoursehistory;
+    Professor.ProfessorHistory history;
     private JPanel userProcessContainer;
     private Professor.ProfessorHistory ph;
     ProfessorProfile p;
     private String profid;
-    public ProfessorHomePageJPanel(JPanel userProcessContainer,ProfessorHistory ph,String neuid,ArrayList<Student> s) {
+    public ProfessorHomePageJPanel(JPanel userProcessContainer,ProfessorHistory ph,String neuid,ProfessorHistory history,ProfessorHistory coursehistory,ProfessorHistory regcoursehistory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ph = ph;
         this.profid = neuid;
-        this.st = s;
+        this.history = history;
+        this.regcoursehistory = regcoursehistory;
+        this.coursehistory = coursehistory;
         p = ph.SearchProfessorbyneuid(neuid);
-        for(ProfessorCourses p : ph.getProfessor_courselist()){
-            System.out.println(p.getProf_name() + " " + p.getProf_id());
-            for(Courses.CourseDetails c: p.getCourselists()){
-                System.out.println(c.getCoursename());
-            }
-                
-            
-        }
+//        for(ProfessorCourses p : ph.getProfessor_courselist()){
+//            System.out.println(p.getProf_name() + " " + p.getProf_id());
+//            for(Courses.CourseDetails c: p.getCourselists()){
+//                System.out.println(c.getCoursename());
+//            }
+//                
+//            
+//        }
         Professor.ProfessorProfile p = ph.SearchProfessorbyneuid(neuid);
         txtName.setText(p.getProf_first_name() + " " + p.getProf_last_name());
         txtProf_Speciality.setText(p.getProf_speciality());
         populatetable();
 //        String imagePathValue = "Speakerseries_costco.png";
-        ImageIcon ii = new ImageIcon(getClass().getResource("/UI_Images/Faculty1.jpeg.jpg"));
+        ImageIcon ii = new ImageIcon(getClass().getResource(p.getProf_picture()));
         Image image = ii.getImage();
         int width = 50; // Set the desired width
         int height = 50;
@@ -80,7 +85,8 @@ public class ProfessorHomePageJPanel extends javax.swing.JPanel {
         txtProf_Speciality = new javax.swing.JLabel();
         RefershCourseListBtn = new javax.swing.JButton();
         AddCoursesBtn = new javax.swing.JButton();
-        PaymentBtn = new javax.swing.JButton();
+        lbLname1 = new javax.swing.JLabel();
+        txtCountry = new javax.swing.JLabel();
 
         tbProfessorList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -136,14 +142,7 @@ public class ProfessorHomePageJPanel extends javax.swing.JPanel {
             }
         });
 
-        PaymentBtn.setBackground(new java.awt.Color(0, 51, 51));
-        PaymentBtn.setForeground(new java.awt.Color(255, 255, 255));
-        PaymentBtn.setText("Payment Method");
-        PaymentBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PaymentBtnActionPerformed(evt);
-            }
-        });
+        lbLname1.setText("Country:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -166,14 +165,13 @@ public class ProfessorHomePageJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(SettingsBtn)
-                                    .addComponent(StudentInformationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(PaymentBtn))
+                                    .addComponent(StudentInformationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 443, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(lbLname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -184,7 +182,11 @@ public class ProfessorHomePageJPanel extends javax.swing.JPanel {
                                             .addComponent(txtProf_Speciality, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(RefershCourseListBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(54, 54, 54)))))))
+                                        .addGap(54, 54, 54))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(lbLname1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(13, 13, 13)
+                                        .addComponent(txtCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -200,34 +202,36 @@ public class ProfessorHomePageJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lbLname)
                             .addComponent(txtProf_Speciality, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbLname1)
+                            .addComponent(txtCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addComponent(RefershCourseListBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(AddCoursesBtn)
                         .addGap(18, 18, 18)
                         .addComponent(StudentInformationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(PaymentBtn)
-                        .addGap(60, 60, 60)
+                        .addGap(22, 22, 22)
                         .addComponent(SettingsBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void StudentInformationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentInformationBtnActionPerformed
         // TODO add your handling code here:
-        UserInterface.SignupPage.Professor.StudentGradingJPanel panel = new UserInterface.SignupPage.Professor.StudentGradingJPanel(userProcessContainer,ph,profid,st);
+        UserInterface.SignupPage.Professor.StudentGradingJPanel panel = new UserInterface.SignupPage.Professor.StudentGradingJPanel(userProcessContainer,ph,profid,history,coursehistory,regcoursehistory);
         userProcessContainer.add("StudentGradingJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -235,6 +239,11 @@ public class ProfessorHomePageJPanel extends javax.swing.JPanel {
 
     private void RefershCourseListBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefershCourseListBtnActionPerformed
         // TODO add your handling code here:
+         txtName.setText(p.getProf_first_name() + " " + p.getProf_last_name());
+         txtCountry.setText(p.getProf_resident());
+         ImageIcon ii = new ImageIcon(p.getProf_picture());
+        Image image1 = ii.getImage();
+        txtProfile.setIcon(new ImageIcon(image1));
          DefaultTableModel dtm = (DefaultTableModel) tbProfessorList.getModel();
         dtm.setRowCount(0);
         ProfessorCourses pc = ph.SearchProfessorCoursesbyneuid(profid);
@@ -260,22 +269,20 @@ public class ProfessorHomePageJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_AddCoursesBtnActionPerformed
 
-    private void PaymentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaymentBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PaymentBtnActionPerformed
-
     private void SettingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsBtnActionPerformed
         // TODO add your handling code here:
         UserInterface.ContentUpdate.ProfessorDetailUpdateJPanel panel = new UserInterface.ContentUpdate.ProfessorDetailUpdateJPanel(userProcessContainer,ph,p);
         userProcessContainer.add("ProfessorDetailUpdateJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+        
+        
+       
     }//GEN-LAST:event_SettingsBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCoursesBtn;
-    private javax.swing.JButton PaymentBtn;
     private javax.swing.JButton RefershCourseListBtn;
     private javax.swing.JButton SettingsBtn;
     private javax.swing.JButton StudentInformationBtn;
@@ -283,7 +290,9 @@ public class ProfessorHomePageJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbFname;
     private javax.swing.JLabel lbLname;
+    private javax.swing.JLabel lbLname1;
     private javax.swing.JTable tbProfessorList;
+    private javax.swing.JLabel txtCountry;
     private javax.swing.JLabel txtName;
     private javax.swing.JLabel txtProf_Speciality;
     private javax.swing.JLabel txtProfile;

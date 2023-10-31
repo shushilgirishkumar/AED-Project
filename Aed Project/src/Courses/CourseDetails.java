@@ -33,6 +33,8 @@ public class CourseDetails {
     private double Course_credit_fees;
     private String Course_status;
     private int Course_credit;
+        int rating;
+
     public String getCourse_grade() {
         return Course_grade;
     }
@@ -40,6 +42,22 @@ public class CourseDetails {
     public void setCourse_grade(String Course_grade) {
         this.Course_grade = Course_grade;
     }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+//    public String getCourse_grade() {
+//        return Course_grade;
+//    }
+//
+//    public void setCourse_grade(String Course_grade) {
+//        this.Course_grade = Course_grade;
+//    }
 
     public double getCourse_rating() {
         return Course_rating;
@@ -181,43 +199,36 @@ public class CourseDetails {
         this.Course_status = Course_status;
     }
 
-    public CourseDetails(String CRN, String Course_code, String Term_offered, String professor_name, String Coursename, String coursedepartment, String startDateTime, String endDateTime,String course_type,String course_description,int studentsregistered,String coursestatus) {
+     public CourseDetails()
+    {
+    }
+    public CourseDetails(String Coursename, String course_prerequisite, String course_department, String Course_code, String CRN, String professor_name, String Term_offered, String startDateTime, String endDateTime, String course_description, int Course_credit, String coursestatus, int course_seats, String Course_Type, String Course_grade, int Course_rating, int no_ofstudentsreg) {
         this.CRN = CRN;
         this.Course_code = Course_code;
         this.Term_offered = Term_offered;
         this.course_professor_name = professor_name;
         this.Coursename = Coursename;
-        this.course_department = coursedepartment;
+        this.course_department = course_department;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
-        this.Course_Type = course_type;
+        this.Course_Type = Course_Type;
         this.course_description = course_description;
-//        this.Course_grade = grade;
+        this.Course_grade = Course_grade;
+        this.course_prerequisite = course_prerequisite;
         this.Course_rating = Double.NaN;
         this.Course_credit_fees = 1700;
         this.Course_credit = 4;
         this.course_seats = 20;
-        this.no_ofstudentsreg = studentsregistered;
+        this.no_ofstudentsreg = no_ofstudentsreg;
         this.Course_status = coursestatus;
     }
     
-    public CourseDetails(String CRN, String Course_code, String Term_offered, String professor_name, String Coursename, String coursedepartment, String startDateTime, String endDateTime,String course_type,String course_description,int studentsregistered,int seats,int credits) {
-        this.CRN = CRN;
-        this.Course_code = Course_code;
-        this.Term_offered = Term_offered;
-        this.course_professor_name = professor_name;
-        this.Coursename = Coursename;
-        this.course_department = coursedepartment;
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
-        this.Course_Type = course_type;
-        this.course_description = course_description;
-//        this.Course_grade = grade;
-        this.Course_rating = Double.NaN;
-        this.Course_credit_fees = 1700;
-        this.Course_credit = credits;
-        this.course_seats = seats;
-        this.no_ofstudentsreg = studentsregistered;
-    }
     
+    
+    @Override
+   public String toString(){
+       return course_department;
+    }
 }
+    
+   

@@ -12,6 +12,8 @@ import Professor.ProfessorCourses;
 import Professor.ProfessorHistory;
 import Professor.ProfessorProfile;
 import java.awt.CardLayout;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -61,6 +63,10 @@ public class ProfessorSignupJPanel extends javax.swing.JPanel {
         txtProfessorneumail = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(153, 153, 153));
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Create Professor Profile");
 
         jLabel2.setText("Professorneuid:");
@@ -130,19 +136,18 @@ public class ProfessorSignupJPanel extends javax.swing.JPanel {
                             .addComponent(txtSpeciality, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 1, Short.MAX_VALUE)))))
                 .addGap(279, 279, 279))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jButton1)
-                        .addGap(213, 213, 213)
-                        .addComponent(CreateProfessorBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(342, 342, 342)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(45, 45, 45)
+                .addComponent(jButton1)
+                .addGap(332, 332, 332)
+                .addComponent(CreateProfessorBtn)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 870, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(244, 244, 244)
@@ -152,9 +157,9 @@ public class ProfessorSignupJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
                 .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -210,7 +215,7 @@ public class ProfessorSignupJPanel extends javax.swing.JPanel {
          String Professorneuid = txtProfessorneuid.getText();
         String Speciality =  (String) txtSpeciality.getSelectedItem();
         int pe = Integer.parseInt(txtProfessorExperience.getText());
-        String Professorpassword = txtProfessorpassword.getText();
+        String Professorpassword = encrypPassword(txtProfessorpassword.getText());
         String ProfessorResident = txtProfessorResident.getText();
         Professor.ProfessorProfile p = new ProfessorProfile(FirstName, LastName, Professorneumail, Professorneuid, Speciality, pe, ProfessorResident, Professorpassword,"/UI_Images/size1.png");
         Professor.ProfessorCourses pc = new ProfessorCourses(FirstName, LastName, Professorneuid);
@@ -234,6 +239,24 @@ public class ProfessorSignupJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public String encrypPassword(String input) 
+     {
+         try{
+          MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashedBytes = md.digest(input.getBytes());
+            StringBuilder stringBuilder = new StringBuilder();
+
+            for (byte b : hashedBytes) {
+                stringBuilder.append(String.format("%02x", b));
+            }
+
+            return stringBuilder.toString();
+        } catch (NoSuchAlgorithmException e) {
+            // Handle the exception as needed
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CreateProfessorBtn;

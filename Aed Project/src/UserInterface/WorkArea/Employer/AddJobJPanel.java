@@ -48,6 +48,7 @@ public class AddJobJPanel extends javax.swing.JPanel {
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jPanel26 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         AddBtn = new javax.swing.JButton();
         txtRolesAvailable = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
@@ -55,6 +56,9 @@ public class AddJobJPanel extends javax.swing.JPanel {
         txtSalaryPackage = new javax.swing.JTextField();
         BackBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(153, 153, 153));
+
+        jPanel25.setBackground(new java.awt.Color(204, 204, 204));
         jPanel25.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 4, true));
 
         txtJobID.addActionListener(new java.awt.event.ActionListener() {
@@ -67,17 +71,28 @@ public class AddJobJPanel extends javax.swing.JPanel {
 
         jLabel21.setText("Role:");
 
+        jPanel26.setBackground(new java.awt.Color(255, 255, 255));
         jPanel26.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 4, true));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("JOB CREATION ");
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
         jPanel26Layout.setHorizontalGroup(
             jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 519, Short.MAX_VALUE)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(178, Short.MAX_VALUE))
         );
         jPanel26Layout.setVerticalGroup(
             jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 142, Short.MAX_VALUE)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         AddBtn.setText("Add");
@@ -161,11 +176,11 @@ public class AddJobJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSalaryPackage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(169, 169, 169)
+                .addGap(76, 76, 76)
                 .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BackBtn))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -175,14 +190,14 @@ public class AddJobJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -203,7 +218,7 @@ public class AddJobJPanel extends javax.swing.JPanel {
         String roleid = txtRole.getText();
         int roleavailable = (Integer) txtRolesAvailable.getValue();
         double Salary = Double.parseDouble(txtSalaryPackage.getText());
-        Employer.EmployerJobRoles emproles = eh.SearchEmployerJobRolesbyid(jobid);
+        Employer.EmployerJobRoles emproles = eh.SearchEmployerJobRolesbyid(empid);
         JobRoles j = emproles.AddRoles(jobid, roleid,emproles.getEmployer_name(), roleavailable, Salary);
         ArrayList<JobRoles> r = eh.getJobrolelists();
         r.add(j);
@@ -226,6 +241,7 @@ public class AddJobJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
     private javax.swing.JTextField txtJobID;

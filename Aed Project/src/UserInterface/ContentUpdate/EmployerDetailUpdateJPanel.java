@@ -6,8 +6,13 @@ package UserInterface.ContentUpdate;
 
 import Professor.ProfessorHistory;
 import java.awt.CardLayout;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -43,7 +48,6 @@ public class EmployerDetailUpdateJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtWebsite_url = new javax.swing.JTextField();
         btnSavePerson = new javax.swing.JButton();
-        upload = new javax.swing.JButton();
         lbLname = new javax.swing.JLabel();
         imagefile = new javax.swing.JTextField();
         lblImage = new javax.swing.JLabel();
@@ -52,6 +56,7 @@ public class EmployerDetailUpdateJPanel extends javax.swing.JPanel {
         txtFname = new javax.swing.JTextField();
         txtLname = new javax.swing.JTextField();
         LogoutBtn = new javax.swing.JButton();
+        upload = new javax.swing.JButton();
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Employer Detail Update");
@@ -60,13 +65,6 @@ public class EmployerDetailUpdateJPanel extends javax.swing.JPanel {
         btnSavePerson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSavePersonActionPerformed(evt);
-            }
-        });
-
-        upload.setText("Update Profile picture:");
-        upload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uploadActionPerformed(evt);
             }
         });
 
@@ -86,6 +84,13 @@ public class EmployerDetailUpdateJPanel extends javax.swing.JPanel {
         LogoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LogoutBtnActionPerformed(evt);
+            }
+        });
+
+        upload.setText("Update Profile picture:");
+        upload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadActionPerformed(evt);
             }
         });
 
@@ -111,11 +116,11 @@ public class EmployerDetailUpdateJPanel extends javax.swing.JPanel {
                                     .addComponent(txtLname)
                                     .addComponent(txtFname)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(204, 204, 204)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(upload)
-                                    .addComponent(lbWebsite_url, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                                .addGap(192, 192, 192)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lbWebsite_url, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(upload, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtWebsite_url, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                                     .addComponent(imagefile))))
@@ -155,8 +160,8 @@ public class EmployerDetailUpdateJPanel extends javax.swing.JPanel {
                                     .addComponent(txtWebsite_url, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(upload)
-                                    .addComponent(imagefile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(imagefile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(upload))
                                 .addGap(21, 21, 21)
                                 .addComponent(btnSavePerson))
                             .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -204,42 +209,6 @@ public class EmployerDetailUpdateJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this,"the Product Information is Saved");
     }//GEN-LAST:event_btnSavePersonActionPerformed
 
-    private void uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadActionPerformed
-        //        // TODO add your handling code here:
-        //        JFileChooser uif = new JFileChooser();
-        //        //Allow only png and jpeg files
-        //        FileNameExtensionFilter ff = new FileNameExtensionFilter("IMAGES", "png", "jpg", "jpeg");
-        //
-        //        uif.addChoosableFileFilter(ff);
-        //
-        //        int showOpenDialogue = uif.showOpenDialog(null);
-        //
-        //        if(showOpenDialogue == JFileChooser.APPROVE_OPTION)
-        //        {
-            //            File If = uif.getSelectedFile();
-            //            String IP = If.getAbsolutePath();
-            //            person.setPicture(IP);
-            //            JOptionPane.showMessageDialog(null, "This image path has been saved: " + IP);
-            //
-            //        }
-        //        JFileChooser browseImageFile = new JFileChooser();
-        //        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES", "png", "jpg", "jpeg");
-        //        browseImageFile.addChoosableFileFilter(fnef);
-        //        int showOpenDialogue = browseImageFile.showOpenDialog(null);
-        //        if (showOpenDialogue == JFileChooser.APPROVE_OPTION) {
-            //            File selectedImageFile = browseImageFile.getSelectedFile();
-            //            String selectedImagePath = selectedImageFile.getAbsolutePath();
-            //            System.out.println(selectedImagePath);
-            //            JOptionPane.showMessageDialog(null, selectedImagePath);
-            //
-            //            person.setPicture(selectedImagePath);
-            //            System.out.println("displaypath:" + person.getPicture());
-            //            ImageIcon ii = new ImageIcon(selectedImagePath);
-            //            Image image1 = ii.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH);
-            //            lblImage.setIcon(new ImageIcon(image1));
-            //        }
-    }//GEN-LAST:event_uploadActionPerformed
-
     private void txtFnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFnameActionPerformed
@@ -252,6 +221,26 @@ public class EmployerDetailUpdateJPanel extends javax.swing.JPanel {
 //        layout.next(userProcessContainer);
         
     }//GEN-LAST:event_LogoutBtnActionPerformed
+
+    private void uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadActionPerformed
+        JFileChooser browseImageFile = new JFileChooser();
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES", "png", "jpg", "jpeg");
+        browseImageFile.addChoosableFileFilter(fnef);
+        int showOpenDialogue = browseImageFile.showOpenDialog(null);
+        if (showOpenDialogue == JFileChooser.APPROVE_OPTION) {
+            File selectedImageFile = browseImageFile.getSelectedFile();
+            String selectedImagePath = selectedImageFile.getAbsolutePath();
+            System.out.println(selectedImagePath);
+            JOptionPane.showMessageDialog(null, selectedImagePath);
+            Employer.EmployerProfile e = eh.SearchEmployerProfilebyid(empid);
+            e.setEmployer_picture(selectedImagePath);
+            System.out.println("displaypath:" + e.getEmployer_picture());
+            imagefile.setText(selectedImagePath);
+            ImageIcon ii = new ImageIcon(selectedImagePath);
+            Image image1 = ii.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH);
+            lblImage.setIcon(new ImageIcon(image1));
+        }
+    }//GEN-LAST:event_uploadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

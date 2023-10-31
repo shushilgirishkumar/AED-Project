@@ -4,6 +4,8 @@
  */
 package Employer;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 /**
@@ -78,13 +80,14 @@ public class EmployerProfile {
     }
 
 
-    public EmployerProfile(String Employer_id, String Employer_name, String Employer_HiringManager_name,String Employer_password) {
+    public EmployerProfile(String Employer_id, String Employer_name, String Employer_HiringManager_name,String Employer_password,String picture) {
         this.Employer_id = Employer_id;
         this.Employer_name = Employer_name;
         this.Employer_HiringManager_name = Employer_HiringManager_name;
         this.Employer_password = Employer_password;
         this.Employer_oldPassword =new ArrayList<>();
         this.Employer_oldPassword.add(Employer_password);
+        this.Employer_picture = picture;
     }
-    
+   
 }

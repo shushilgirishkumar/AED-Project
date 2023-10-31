@@ -8,7 +8,10 @@ package UserInterface;
 import Professor.ProfessorCourses;
 import Professor.ProfessorHistory;
 import java.awt.CardLayout;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -40,14 +43,14 @@ public class ProfessorCourseCreationJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPasswordField1 = new javax.swing.JPasswordField();
         jLabel18 = new javax.swing.JLabel();
         txtStartDate = new javax.swing.JTextField();
         txtEndDate = new javax.swing.JTextField();
-        txtSeats = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        txtCoursecode = new javax.swing.JTextField();
+        txtcode = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         txtSemster = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -60,12 +63,15 @@ public class ProfessorCourseCreationJPanel extends javax.swing.JPanel {
         txtCourseDescription = new javax.swing.JTextArea();
         CreateCourseBtn = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
-        txtCourseType = new javax.swing.JTextField();
         BackBtn = new javax.swing.JButton();
-        txtCRN1 = new javax.swing.JTextField();
+        txtcrn = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         txtcoursedepartment = new javax.swing.JLabel();
-        txtcoursedep = new javax.swing.JLabel();
+        txtSeats = new javax.swing.JSpinner();
+        txtcoursedep = new javax.swing.JComboBox<>();
+        txtCourseType = new javax.swing.JComboBox<>();
+
+        jPasswordField1.setText("jPasswordField1");
 
         jLabel18.setText("Seats:");
 
@@ -81,17 +87,17 @@ public class ProfessorCourseCreationJPanel extends javax.swing.JPanel {
 
         jLabel14.setText("Course Name:");
 
-        txtCoursecode.addActionListener(new java.awt.event.ActionListener() {
+        txtcode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCoursecodeActionPerformed(evt);
+                txtcodeActionPerformed(evt);
             }
         });
 
         jLabel15.setText("Credits:");
 
-        jLabel16.setText("StartDate");
+        jLabel16.setText("StartDate(MM/dd/yyyy hh:mm):");
 
-        jLabel17.setText("EndDate:");
+        jLabel17.setText("EndDate(MM/dd/yyyy hh:mm):");
 
         jLabel1.setText("Create Course Information");
 
@@ -110,12 +116,6 @@ public class ProfessorCourseCreationJPanel extends javax.swing.JPanel {
 
         jLabel21.setText("Course Type:");
 
-        txtCourseType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCourseTypeActionPerformed(evt);
-            }
-        });
-
         BackBtn.setText("Back");
         BackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,15 +123,25 @@ public class ProfessorCourseCreationJPanel extends javax.swing.JPanel {
             }
         });
 
-        txtCRN1.addActionListener(new java.awt.event.ActionListener() {
+        txtcrn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCRN1ActionPerformed(evt);
+                txtcrnActionPerformed(evt);
             }
         });
 
         jLabel13.setText("Course code:");
 
         txtcoursedepartment.setText("Course department:");
+
+        txtSeats.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                txtSeatsStateChanged(evt);
+            }
+        });
+
+        txtcoursedep.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECT", "Information Systems", "Software Engineering", "Data Architecture Management" }));
+
+        txtCourseType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECT", "OFFLINE", "ONLINE" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -153,7 +163,7 @@ public class ProfessorCourseCreationJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -164,18 +174,19 @@ public class ProfessorCourseCreationJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtSemster)
-                    .addComponent(txtCoursecode)
-                    .addComponent(txtCourseName)
-                    .addComponent(txtCredits)
-                    .addComponent(txtStartDate)
-                    .addComponent(txtEndDate)
-                    .addComponent(txtSeats)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                    .addComponent(txtCourseType)
-                    .addComponent(txtCRN1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtcoursedep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtcode)
+                        .addComponent(txtCourseName)
+                        .addComponent(txtCredits)
+                        .addComponent(txtStartDate)
+                        .addComponent(txtEndDate)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                        .addComponent(txtcrn)
+                        .addComponent(txtcoursedep, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSemster)
+                        .addComponent(txtSeats))
+                    .addComponent(txtCourseType, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(139, 139, 139))
         );
         layout.setVerticalGroup(
@@ -183,7 +194,7 @@ public class ProfessorCourseCreationJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
+                .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,15 +212,15 @@ public class ProfessorCourseCreationJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtCRN1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtcrn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtCoursecode, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtcode, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtcoursedep, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtcoursedep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
                         .addComponent(txtSemster, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtCourseName, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -219,16 +230,14 @@ public class ProfessorCourseCreationJPanel extends javax.swing.JPanel {
                         .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtSeats, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtSeats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtCourseType, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCourseType, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
@@ -236,19 +245,19 @@ public class ProfessorCourseCreationJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addComponent(CreateCourseBtn)
                         .addGap(26, 26, 26))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(171, 171, 171)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BackBtn)
                         .addGap(36, 36, 36))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCoursecodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCoursecodeActionPerformed
+    private void txtcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcodeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCoursecodeActionPerformed
+    }//GEN-LAST:event_txtcodeActionPerformed
 
     private void txtStartDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStartDateActionPerformed
         // TODO add your handling code here:
@@ -257,33 +266,83 @@ public class ProfessorCourseCreationJPanel extends javax.swing.JPanel {
     private void CreateCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateCourseBtnActionPerformed
         // TODO add your handling code here:
         
-        String CRN = txtCoursecode.getText();
+        String CRN = txtcode.getText();
         String CourseName =  txtCourseName.getText();
-        String CourseType =  txtCourseType.getText();
-        String CourseCode =  txtCoursecode.getText();
+        String CourseType =  (String) txtCourseType.getSelectedItem();
+        String CourseCode =  txtcode.getText();
         int CourseCredits =  Integer.parseInt(txtCredits.getText());
-        int seats = Integer.parseInt(txtSeats.getText());
+        int seats = (Integer) txtSeats.getValue();
         String semster = txtSemster.getText();
         String startdate = txtStartDate.getText();
+        String department = (String) txtcoursedep.getSelectedItem();
         String enddate = txtEndDate.getText();
         String course_desc = txtCourseDescription.getText();
         ProfessorCourses professor_c = ph.SearchProfessorCoursesbyneuid(profid);
         Professor.ProfessorProfile ppp = ph.SearchProfessorbyneuid(profid);
-        txtcoursedep.setText(ppp.getProf_speciality());
-        Courses.CourseDetails c = new Courses.CourseDetails(CRN, CourseCode, semster,"John Smith", CourseName, ppp.getProf_speciality(), startdate, enddate,CourseType,course_desc,0,CourseCredits,seats);
+        String prof_name = ppp.getProf_first_name() + " " + ppp.getProf_last_name();
+        
+        boolean shouldAddNewCourse = true;
+        
+        
+
+    SimpleDateFormat dateTimeFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+    try {
+        Date Sdtm1 = dateTimeFormat.parse(startdate);
+        Date edtm1 = dateTimeFormat.parse(enddate);
+         System.out.println(edtm1);
+          if (Sdtm1.equals(edtm1)) {
+                   //     printCourseHistory();
+                       shouldAddNewCourse = false;
+                       JOptionPane.showMessageDialog(null, "Unable to register, There is a time conflict with your registered course or you have already completed or registered for the course", "Warning", JOptionPane.WARNING_MESSAGE);
+                        txtStartDate.setText("");
+                        txtEndDate.setText("");
+                        
+                    }
+               
+            
+       if(shouldAddNewCourse)
+        {
+         if(department.equals("SELECT")){
+               JOptionPane.showMessageDialog(this,"Choose a department"); 
+         }
+         else{
+             if(CourseType.equals("SELECT")){
+                 JOptionPane.showMessageDialog(this,"Choose a course type"); 
+             }
+             else{
+                 Courses.CourseDetails c = new Courses.CourseDetails(CourseName,"No pre-requisite",department,CourseCode,CRN,prof_name, semster, startdate, enddate, course_desc, CourseCredits,"un-erolled",seats,CourseType,"NA",0,0);
         ArrayList<Courses.CourseDetails> c1 = ph.getCoursehistory();
         ArrayList<Courses.CourseDetails> c2 = professor_c.getCourselists();
         c1.add(c);
         c2.add(c);
         ph.setCoursehistory(c1);
         professor_c.setCourselists(c2);
-        JOptionPane.showMessageDialog(this,"New Course Created");    
+        JOptionPane.showMessageDialog(this,"New Course Created"); 
+             }
+        
+         }
+        
+        }
+       
+        
+      }
+        
+        
+        
+        
+    
+    catch (ParseException e) {
+        // Handle the ParseException (e.g., log the error or throw a custom exception)
+        System.err.println("Error parsing date: " + e.getMessage());
+        // You might want to throw an exception here or handle it according to your application's logic
+    }
+       
+        
+                //(String Coursename, String course_prerequisite, String course_department, String Course_code, String CRN, String professor_name, String Term_offered, String startDateTime, String endDateTime, String course_description, int Course_credit, String coursestatus, int course_seats, String Course_Type, String Grade, int Course_rating, int no_ofstudentsreg)
+
+          
 
     }//GEN-LAST:event_CreateCourseBtnActionPerformed
-
-    private void txtCourseTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCourseTypeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCourseTypeActionPerformed
 
     private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
         // TODO add your handling code here:
@@ -293,9 +352,16 @@ public class ProfessorCourseCreationJPanel extends javax.swing.JPanel {
 //        
     }//GEN-LAST:event_BackBtnActionPerformed
 
-    private void txtCRN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCRN1ActionPerformed
+    private void txtcrnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcrnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCRN1ActionPerformed
+    }//GEN-LAST:event_txtcrnActionPerformed
+
+    private void txtSeatsStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_txtSeatsStateChanged
+        // TODO add your handling code here:
+         if((Integer) txtSeats.getValue()<0){
+             JOptionPane.showMessageDialog(this,"Invalid roles availability!");
+        }
+    }//GEN-LAST:event_txtSeatsStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -312,18 +378,19 @@ public class ProfessorCourseCreationJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtCRN1;
     private javax.swing.JTextArea txtCourseDescription;
     private javax.swing.JTextField txtCourseName;
-    private javax.swing.JTextField txtCourseType;
-    private javax.swing.JTextField txtCoursecode;
+    private javax.swing.JComboBox<String> txtCourseType;
     private javax.swing.JTextField txtCredits;
     private javax.swing.JTextField txtEndDate;
-    private javax.swing.JTextField txtSeats;
+    private javax.swing.JSpinner txtSeats;
     private javax.swing.JTextField txtSemster;
     private javax.swing.JTextField txtStartDate;
-    private javax.swing.JLabel txtcoursedep;
+    private javax.swing.JTextField txtcode;
+    private javax.swing.JComboBox<String> txtcoursedep;
     private javax.swing.JLabel txtcoursedepartment;
+    private javax.swing.JTextField txtcrn;
     // End of variables declaration//GEN-END:variables
 }

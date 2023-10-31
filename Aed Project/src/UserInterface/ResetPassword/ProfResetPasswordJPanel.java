@@ -7,6 +7,8 @@ package UserInterface.ResetPassword;
 
 import Professor.ProfessorHistory;
 import java.awt.CardLayout;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -104,7 +106,7 @@ public class ProfResetPasswordJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
          String prof_neuid = txtneuid.getText();
         
-        String prof_newpassword = txtnewPassword.getText();
+        String prof_newpassword = encrypPassword(txtnewPassword.getText());
         Professor.ProfessorProfile professor_p = ph.SearchProfessorbyneuid(prof_neuid);
          ArrayList<String> oldPwd = professor_p.getProf_oldPassword();
         if(oldPwd.contains(prof_newpassword)){
@@ -123,7 +125,24 @@ public class ProfResetPasswordJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_UpdateBtnActionPerformed
 
+public String encrypPassword(String input) 
+     {
+         try{
+          MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashedBytes = md.digest(input.getBytes());
+            StringBuilder stringBuilder = new StringBuilder();
 
+            for (byte b : hashedBytes) {
+                stringBuilder.append(String.format("%02x", b));
+            }
+
+            return stringBuilder.toString();
+        } catch (NoSuchAlgorithmException e) {
+            // Handle the exception as needed
+            e.printStackTrace();
+            return null;
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton UpdateBtn;
     private javax.swing.JLabel jLabel1;

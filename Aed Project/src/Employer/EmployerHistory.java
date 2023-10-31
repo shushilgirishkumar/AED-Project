@@ -13,7 +13,17 @@ import java.util.ArrayList;
 public class EmployerHistory {
     private ArrayList<EmployerJobRoles> employerhistory;
     private ArrayList<EmployerProfile> emplists;
+    private ArrayList<EmployerProfile> newemplists;
     private ArrayList<JobRoles> jobrolelists;
+
+    public ArrayList<EmployerProfile> getNewemplists() {
+        return newemplists;
+    }
+
+    public void setNewemplists(ArrayList<EmployerProfile> newemplists) {
+        this.newemplists = newemplists;
+    }
+    
 
     public ArrayList<JobRoles> getJobrolelists() {
         return jobrolelists;
@@ -42,24 +52,17 @@ public class EmployerHistory {
     }
 
     public EmployerHistory() {
-        sample_employers();
-        sample_employersandjobs();
-        }  
-     private void sample_employers() {
         this.employerhistory = new ArrayList<>();
         this.emplists = new ArrayList<>();
         this.jobrolelists = new ArrayList<>();
-        EmployerProfile emp1 = new EmployerProfile("empid1", "Google", "Charles Mangnus", "charles123");
-        EmployerProfile emp2 = new EmployerProfile("empid2", "Amazon", "Sujitha Watson", "sujitha123");
-        EmployerProfile emp3 = new EmployerProfile("empid3", "Walmart", "James Cameeron", "james123");
-        EmployerProfile emp4 = new EmployerProfile("empid4", "RedHat", "Thamskun zhoglagi", "thamskun123");
+        EmployerProfile emp1 = new EmployerProfile("empid1", "Google", "Charles Mangnus", "charles123","/UI_Images/google.png");
+        EmployerProfile emp2 = new EmployerProfile("empid2", "Amazon", "Sujitha Watson", "sujitha123","/UI_Images/amazon.png");
+        EmployerProfile emp3 = new EmployerProfile("empid3", "Walmart", "James Cameeron", "james123","/UI_Images/walmart.png");
+        EmployerProfile emp4 = new EmployerProfile("empid4", "RedHat", "Thamskun zhoglagi", "thamskun123","/UI_Images/redhat.png");
         emplists.add(emp1);
         emplists.add(emp2);
         emplists.add(emp3);
-        emplists.add(emp4);   
-    }
-
-    private void sample_employersandjobs() {
+        emplists.add(emp4); 
          EmployerJobRoles empj1 = new EmployerJobRoles("empid1", "Google");
         EmployerJobRoles empj2 = new EmployerJobRoles("empid2", "Amazon");
         EmployerJobRoles empj3 = new EmployerJobRoles("empid3", "Walmart");
@@ -78,8 +81,7 @@ public class EmployerHistory {
         jobrolelists.add(j3);
         jobrolelists.add(j4);
         jobrolelists.add(j5);
-    }
-
+        }  
    public EmployerProfile SearchEmployerProfilebyid(String id){
         for(EmployerProfile e : emplists){
             if(id.equals(e.getEmployer_id())){

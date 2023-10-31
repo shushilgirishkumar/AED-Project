@@ -6,8 +6,16 @@ package UserInterface.ContentUpdate;
 
 
 import Professor.ProfessorHistory;
+import Professor.ProfessorProfile;
+import java.awt.CardLayout;
+import java.awt.Image;
+import java.io.File;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -42,7 +50,7 @@ public class ProfessorDetailUpdateJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtWebsite_url = new javax.swing.JTextField();
+        txtpassword = new javax.swing.JTextField();
         btnSavePerson = new javax.swing.JButton();
         upload = new javax.swing.JButton();
         lbLname = new javax.swing.JLabel();
@@ -53,11 +61,16 @@ public class ProfessorDetailUpdateJPanel extends javax.swing.JPanel {
         txtFname = new javax.swing.JTextField();
         txtLname = new javax.swing.JTextField();
         lbWebsite_url1 = new javax.swing.JLabel();
-        txtWebsite_url1 = new javax.swing.JTextField();
+        txtresident = new javax.swing.JTextField();
         LogoutBtn = new javax.swing.JButton();
+        BackBtn = new javax.swing.JButton();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Professor Detail Update");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(278, 20, 257, 37));
+        add(txtpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 189, 188, -1));
 
         btnSavePerson.setText("Save ");
         btnSavePerson.addActionListener(new java.awt.event.ActionListener() {
@@ -65,6 +78,7 @@ public class ProfessorDetailUpdateJPanel extends javax.swing.JPanel {
                 btnSavePersonActionPerformed(evt);
             }
         });
+        add(btnSavePerson, new org.netbeans.lib.awtextra.AbsoluteConstraints(348, 272, -1, -1));
 
         upload.setText("Update Profile picture:");
         upload.addActionListener(new java.awt.event.ActionListener() {
@@ -72,20 +86,36 @@ public class ProfessorDetailUpdateJPanel extends javax.swing.JPanel {
                 uploadActionPerformed(evt);
             }
         });
+        add(upload, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 229, -1, -1));
 
         lbLname.setText("Last name:");
+        add(lbLname, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 121, 97, 22));
+
+        imagefile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imagefileActionPerformed(evt);
+            }
+        });
+        add(imagefile, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 188, -1));
+        add(lblImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(624, 149, 296, 241));
 
         lbWebsite_url.setText("Professor password:");
+        add(lbWebsite_url, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 192, 137, -1));
 
         lbFname.setText("First name:");
+        add(lbFname, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 87, 97, 22));
 
         txtFname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFnameActionPerformed(evt);
             }
         });
+        add(txtFname, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 87, 189, -1));
+        add(txtLname, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 121, 189, -1));
 
         lbWebsite_url1.setText("Professor resident:");
+        add(lbWebsite_url1, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 152, 140, -1));
+        add(txtresident, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 149, 189, -1));
 
         LogoutBtn.setText("Logout");
         LogoutBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -93,146 +123,73 @@ public class ProfessorDetailUpdateJPanel extends javax.swing.JPanel {
                 LogoutBtnActionPerformed(evt);
             }
         });
+        add(LogoutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(278, 278, 278)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(201, 201, 201)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(229, 229, 229)
-                                        .addComponent(txtWebsite_url1, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(lbFname, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                                            .addComponent(lbLname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtLname)
-                                            .addComponent(txtFname)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lbWebsite_url1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(204, 204, 204)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(upload)
-                                    .addComponent(lbWebsite_url, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtWebsite_url, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                                    .addComponent(imagefile))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSavePerson)
-                        .addGap(204, 204, 204))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(LogoutBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtFname)
-                    .addComponent(lbFname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbLname, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtLname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lbWebsite_url1)
-                                    .addComponent(txtWebsite_url1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lbWebsite_url)
-                                    .addComponent(txtWebsite_url, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(upload)
-                                    .addComponent(imagefile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(21, 21, 21)
-                                .addComponent(btnSavePerson))
-                            .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(210, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(LogoutBtn)
-                        .addGap(196, 196, 196))))
-        );
+        BackBtn.setText("Back");
+        BackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBtnActionPerformed(evt);
+            }
+        });
+        add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSavePersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavePersonActionPerformed
         // TODO add your handling code here:
-//        person.setFname(txtFname.getText());
-//        person.setLname(txtLname.getText());
-//        person.setSsn(txtSSN.getText());
-//        person.setEmail(txtEmail.getText());
-//        person.setGender(txtGender.getText());
-//        person.setPhoneno(txtPhone.getText());
-//        person.setOccupation(txtOccupation.getText());
-//        person.setWebsite(txtWebsite_url.getText());
-//        person.setDob(txtDOB.getText());
-//        person.setEmergencycontact(txtEmergencyContact.getText());
-        JOptionPane.showMessageDialog(this,"the Product Information is Saved");
+
+        String Fname = txtFname.getText();
+        String Lname = txtLname.getText();
+        String Profresident = txtresident.getText();
+        String password = txtpassword.getText();
+        if(Fname!=null) p.setProf_first_name(Fname);
+        if(Lname!=null) p.setProf_last_name(Lname);
+        if(Profresident!=null) p.setProf_resident(Profresident);
+        if(imagefile.getText()!=null) p.setProf_picture(imagefile.getText());
+        if(password !=null){
+           if(p.getProf_oldPassword().contains(password)){
+             JOptionPane.showMessageDialog(this,"Passord should not match one and it");
+             txtpassword.setText("");
+        }
+        else{
+            p.setProf_password(password);
+            ArrayList<String> pass = p.getProf_oldPassword();
+            pass.add(password);
+            p.setProf_oldPassword(pass);
+            txtFname.setText("");
+            txtLname.setText("");
+            txtresident.setText("");
+            txtpassword.setText("");
+            JOptionPane.showMessageDialog(this,"the Professor Information is Saved");
+        }
+           
+        }
+        else{
+            txtFname.setText("");
+            txtLname.setText("");
+            txtresident.setText("");
+            txtpassword.setText("");
+            JOptionPane.showMessageDialog(this,"the Professor Information is Saved");
+        }
+        
+        
     }//GEN-LAST:event_btnSavePersonActionPerformed
 
     private void uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadActionPerformed
-        //        // TODO add your handling code here:
-        //        JFileChooser uif = new JFileChooser();
-        //        //Allow only png and jpeg files
-        //        FileNameExtensionFilter ff = new FileNameExtensionFilter("IMAGES", "png", "jpg", "jpeg");
-        //
-        //        uif.addChoosableFileFilter(ff);
-        //
-        //        int showOpenDialogue = uif.showOpenDialog(null);
-        //
-        //        if(showOpenDialogue == JFileChooser.APPROVE_OPTION)
-        //        {
-            //            File If = uif.getSelectedFile();
-            //            String IP = If.getAbsolutePath();
-            //            person.setPicture(IP);
-            //            JOptionPane.showMessageDialog(null, "This image path has been saved: " + IP);
-            //
-            //        }
-//        JFileChooser browseImageFile = new JFileChooser();
-//        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES", "png", "jpg", "jpeg");
-//        browseImageFile.addChoosableFileFilter(fnef);
-//        int showOpenDialogue = browseImageFile.showOpenDialog(null);
-//        if (showOpenDialogue == JFileChooser.APPROVE_OPTION) {
-//            File selectedImageFile = browseImageFile.getSelectedFile();
-//            String selectedImagePath = selectedImageFile.getAbsolutePath();
-//            System.out.println(selectedImagePath);
-//            JOptionPane.showMessageDialog(null, selectedImagePath);
-//
-//            person.setPicture(selectedImagePath);
-//            System.out.println("displaypath:" + person.getPicture());
-//            ImageIcon ii = new ImageIcon(selectedImagePath);
-//            Image image1 = ii.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH);
-//            lblImage.setIcon(new ImageIcon(image1));
-//        }
+         JFileChooser browseImageFile = new JFileChooser();
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES", "png", "jpg", "jpeg");
+        browseImageFile.addChoosableFileFilter(fnef);
+        int showOpenDialogue = browseImageFile.showOpenDialog(null);
+        if (showOpenDialogue == JFileChooser.APPROVE_OPTION) {
+            File selectedImageFile = browseImageFile.getSelectedFile();
+            String selectedImagePath = selectedImageFile.getAbsolutePath();
+            System.out.println(selectedImagePath);
+            JOptionPane.showMessageDialog(null, selectedImagePath);
+            System.out.println("displaypath:" + p.getProf_picture());
+            imagefile.setText(selectedImagePath);
+            ImageIcon ii = new ImageIcon(selectedImagePath);
+            Image image1 = ii.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH);
+            lblImage.setIcon(new ImageIcon(image1));
+        }  
     }//GEN-LAST:event_uploadActionPerformed
 
     private void txtFnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFnameActionPerformed
@@ -241,11 +198,30 @@ public class ProfessorDetailUpdateJPanel extends javax.swing.JPanel {
 
     private void LogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBtnActionPerformed
         // TODO add your handling code here:
+         JOptionPane.showMessageDialog(this,p.getProf_first_name()+" " + p.getProf_last_name()+ "Account Information is Logged out");
+         userProcessContainer.removeAll();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+
         
     }//GEN-LAST:event_LogoutBtnActionPerformed
 
+    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        
+
+    }//GEN-LAST:event_BackBtnActionPerformed
+
+    private void imagefileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imagefileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_imagefileActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackBtn;
     private javax.swing.JButton LogoutBtn;
     private javax.swing.JButton btnSavePerson;
     private javax.swing.JTextField imagefile;
@@ -257,8 +233,8 @@ public class ProfessorDetailUpdateJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblImage;
     private javax.swing.JTextField txtFname;
     private javax.swing.JTextField txtLname;
-    private javax.swing.JTextField txtWebsite_url;
-    private javax.swing.JTextField txtWebsite_url1;
+    private javax.swing.JTextField txtpassword;
+    private javax.swing.JTextField txtresident;
     private javax.swing.JButton upload;
     // End of variables declaration//GEN-END:variables
 }

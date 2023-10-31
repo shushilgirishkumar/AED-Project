@@ -7,6 +7,8 @@ package UserInterface.HomePage;
 import Employer.JobRoles;
 import Professor.ProfessorHistory;
 import java.awt.CardLayout;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,17 +21,39 @@ public class EmployerHomepageJPanel extends javax.swing.JPanel {
     /**
      * Creates new form EmployerHomepageJPanel
      */
+    Professor.ProfessorHistory coursehistory;
+    Professor.ProfessorHistory regcoursehistory;
     private JPanel userProcessContainer; 
     private Professor.ProfessorHistory ph;
     private Employer.EmployerHistory eh;
     private String empid;
-    public EmployerHomepageJPanel(JPanel userProcessContainer, ProfessorHistory ph, Employer.EmployerHistory eh,String empid) {
+    public EmployerHomepageJPanel(JPanel userProcessContainer, ProfessorHistory ph, Employer.EmployerHistory eh,String empid,ProfessorHistory coursehistory,ProfessorHistory regcoursehistory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ph = ph;
         this.eh = eh;
         this.empid = empid;
+        this.regcoursehistory = regcoursehistory;
+        this.coursehistory = coursehistory;
         populatetable();
+        Employer.EmployerProfile e = eh.SearchEmployerProfilebyid(empid);
+        txtName.setText(e.getEmployer_name());
+        txtHiringManager.setText(e.getEmployer_HiringManager_name());
+        if(eh.getNewemplists().contains(e)){
+        ImageIcon ii = new ImageIcon(e.getEmployer_picture());
+        Image image1 = ii.getImage();
+        txtempid.setIcon(new ImageIcon(image1)); 
+        }
+        else{
+            ImageIcon ii = new ImageIcon(getClass().getResource(e.getEmployer_picture()));
+        Image image = ii.getImage();
+        int width = 50; // Set the desired width
+        int height = 50;
+        Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_DEFAULT);
+        ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
+        txtempid.setIcon(new ImageIcon(image));
+        }
+        
     }
 
     /**
@@ -48,7 +72,6 @@ public class EmployerHomepageJPanel extends javax.swing.JPanel {
         SettingsBtn = new javax.swing.JButton();
         AddJobsBtn = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtName = new javax.swing.JLabel();
@@ -56,8 +79,9 @@ public class EmployerHomepageJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbJoblists = new javax.swing.JTable();
         RefershJobListBtn = new javax.swing.JButton();
+        txtempid = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(204, 51, 0));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setForeground(new java.awt.Color(204, 255, 204));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 0, 24)); // NOI18N
@@ -72,7 +96,7 @@ public class EmployerHomepageJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(324, 324, 324)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(517, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,7 +106,7 @@ public class EmployerHomepageJPanel extends javax.swing.JPanel {
                 .addGap(29, 29, 29))
         );
 
-        jPanel2.setBackground(new java.awt.Color(0, 255, 0));
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
         HiringEmployeesBtn.setBackground(new java.awt.Color(102, 102, 102));
         HiringEmployeesBtn.setText("Hiring Employees");
@@ -122,28 +146,17 @@ public class EmployerHomepageJPanel extends javax.swing.JPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(86, 86, 86)
                 .addComponent(AddJobsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addComponent(HiringEmployeesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(SettingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addContainerGap(244, Short.MAX_VALUE))
         );
 
-        jPanel4.setBackground(new java.awt.Color(0, 153, 153));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 137, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 103, Short.MAX_VALUE)
-        );
+        jPanel4.setBackground(new java.awt.Color(153, 153, 153));
 
         jLabel2.setText("Name:");
 
@@ -164,7 +177,7 @@ public class EmployerHomepageJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tbJoblists);
 
-        RefershJobListBtn.setText("Refresh Table");
+        RefershJobListBtn.setText("Refresh ");
         RefershJobListBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RefershJobListBtnActionPerformed(evt);
@@ -179,43 +192,46 @@ public class EmployerHomepageJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
+                        .addComponent(txtempid, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(54, 54, 54)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtHiringManager, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtHiringManager, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RefershJobListBtn))
-                .addGap(14, 14, 14))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addComponent(RefershJobListBtn)
+                .addGap(34, 34, 34))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGap(15, 15, 15)
+                        .addComponent(txtempid, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtHiringManager, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addComponent(RefershJobListBtn)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                            .addComponent(txtHiringManager, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RefershJobListBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -251,6 +267,10 @@ public class EmployerHomepageJPanel extends javax.swing.JPanel {
 
     private void HiringEmployeesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HiringEmployeesBtnActionPerformed
         // TODO add your handling code here:
+        UserInterface.WorkArea.Employer.StudentInformationJPanel panel = new  UserInterface.WorkArea.Employer.StudentInformationJPanel(userProcessContainer,ph,eh,empid,coursehistory,regcoursehistory);
+        userProcessContainer.add("StudentInformationJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_HiringEmployeesBtnActionPerformed
 
     private void AddJobsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddJobsBtnActionPerformed
@@ -292,11 +312,11 @@ public class EmployerHomepageJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbJoblists;
     private javax.swing.JLabel txtHiringManager;
     private javax.swing.JLabel txtName;
+    private javax.swing.JLabel txtempid;
     // End of variables declaration//GEN-END:variables
 
     private void populatetable() {

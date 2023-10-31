@@ -4,6 +4,8 @@
  */
 package Professor;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 
@@ -117,5 +119,5 @@ public class ProfessorProfile {
         prof_oldPassword = new ArrayList();
         prof_oldPassword.add(Prof_password);
     }
-     
+    
 }

@@ -7,6 +7,8 @@ package UserInterface.ResetPassword;
 
 import Professor.ProfessorHistory;
 import java.awt.CardLayout;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -20,14 +22,18 @@ public class EmployerResetPasswordJPanel extends javax.swing.JPanel {
     /**
      * Creates new form EmployerResetPasswordJPanel
      */
+     Professor.ProfessorHistory coursehistory;
+    Professor.ProfessorHistory regcoursehistory;
     private JPanel userProcessContainer;
     private Professor.ProfessorHistory ph;
     private Employer.EmployerHistory eh;
-    public EmployerResetPasswordJPanel(JPanel userProcessContainer, ProfessorHistory ph, Employer.EmployerHistory eh) {
+    public EmployerResetPasswordJPanel(JPanel userProcessContainer, ProfessorHistory ph, Employer.EmployerHistory eh,ProfessorHistory coursehistory,ProfessorHistory regcoursehistory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ph = ph;
         this.eh = eh;
+        this.regcoursehistory = regcoursehistory;
+        this.coursehistory = coursehistory;
     }
 
     /**
@@ -103,7 +109,7 @@ public class EmployerResetPasswordJPanel extends javax.swing.JPanel {
     private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
         // TODO add your handling code here:
         String empid = txtempid.getText();
-        String emp_password = txtnewPassword.getText();
+        String emp_password = encrypPassword(txtnewPassword.getText());
         Employer.EmployerProfile e = eh.SearchEmployerProfilebyid(empid);
         ArrayList<String> oldPwd = e.getEmployer_oldPassword();
         if(oldPwd.contains(emp_password)){
@@ -115,14 +121,31 @@ public class EmployerResetPasswordJPanel extends javax.swing.JPanel {
             oldPwd.add(empid);
             e.setEmployer_oldPassword(oldPwd);
             JOptionPane.showMessageDialog(this,"Password is updated");
-            UserInterface.LoginPage.EmployerLoginJPanel panel = new UserInterface.LoginPage.EmployerLoginJPanel(userProcessContainer,ph,eh);
+            UserInterface.LoginPage.EmployerLoginJPanel panel = new UserInterface.LoginPage.EmployerLoginJPanel(userProcessContainer,ph,eh,coursehistory,regcoursehistory);
             userProcessContainer.add("EmployerLoginJPanel", panel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }
     }//GEN-LAST:event_UpdateBtnActionPerformed
 
+public String encrypPassword(String input) 
+     {
+         try{
+          MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashedBytes = md.digest(input.getBytes());
+            StringBuilder stringBuilder = new StringBuilder();
 
+            for (byte b : hashedBytes) {
+                stringBuilder.append(String.format("%02x", b));
+            }
+
+            return stringBuilder.toString();
+        } catch (NoSuchAlgorithmException e) {
+            // Handle the exception as needed
+            e.printStackTrace();
+            return null;
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton UpdateBtn;
     private javax.swing.JLabel jLabel1;

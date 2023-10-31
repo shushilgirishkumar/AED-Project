@@ -7,7 +7,8 @@ package UserInterface;
 
 import Employer.EmployerHistory;
 import Professor.ProfessorHistory;
-import Student.Student;
+import Student.Studentde;
+import Student.Adminlog;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 
@@ -18,34 +19,34 @@ import java.util.ArrayList;
 public class MainJFrame extends javax.swing.JFrame {
 
     
-    private Professor.ProfessorHistory ph;
-    private Employer.EmployerHistory eh;
-    private ArrayList<Student> st;
+   
+  
+    
+
+        Professor.ProfessorHistory ph;
+        Employer.EmployerHistory eh;
+        Professor.ProfessorHistory history;
+        Professor.ProfessorHistory coursehistory;
+        Professor.ProfessorHistory regcoursehistory;
+         Professor.ProfessorHistory sugg;
+                  String neuid;
+                  Professor.ProfessorHistory addlog;
+
 
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
-        this.ph = new ProfessorHistory();
-        this.eh = new EmployerHistory();
-        this.st = new ArrayList<>();
-        Student s = new Student("shushil", "23", "COE", "Project Management", "FALL", "002817660", "shushil123");
-        Student s1 = new Student("girish", "26", "COE", "Project Management", "FALL", "002817660", "girish123");
-        
-       st.add(s);
-       st.add(s1);
-        for(Student s3 : st){
-            ArrayList<Courses.CourseDetails> clists = s3.getRegcourselist();
-            int no= 0;
-            for(Courses.CourseDetails c : ph.getCoursehistory()){
-                if(c.getCourse_department().equals(s3.getSpecalization())){
-                    clists.add(c);
-                    c.setNo_ofstudentsreg(++no);
-                }
-            }
-            s3.setRegcourselist(clists);
-        }
+        history = new ProfessorHistory();
+        coursehistory = new ProfessorHistory();
+        regcoursehistory = new ProfessorHistory();
+        sugg = new ProfessorHistory();
+        eh = new EmployerHistory();
+        ph = new ProfessorHistory();
+        this.neuid = "";
+        addlog = new ProfessorHistory();
+
     }
 
     /**
@@ -62,6 +63,7 @@ public class MainJFrame extends javax.swing.JFrame {
         ProfessorBtn = new javax.swing.JButton();
         EmployerBtn = new javax.swing.JButton();
         StudentBtn = new javax.swing.JButton();
+        btnvalidation = new javax.swing.JButton();
         userProcessContainer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -91,6 +93,13 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnvalidation.setText("Admin");
+        btnvalidation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnvalidationActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -98,32 +107,29 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(EmployerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 577, Short.MAX_VALUE)
+                .addGap(86, 86, 86)
+                .addComponent(StudentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90)
                 .addComponent(ProfessorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(386, Short.MAX_VALUE)
-                    .addComponent(StudentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(380, 380, 380)))
+                .addGap(105, 105, 105)
+                .addComponent(btnvalidation, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EmployerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ProfessorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(26, 26, 26)
+                    .addComponent(ProfessorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(StudentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(32, Short.MAX_VALUE)))
+                    .addComponent(btnvalidation, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jSplitPane1.setTopComponent(jPanel1);
 
+        userProcessContainer.setBackground(new java.awt.Color(255, 255, 255));
         userProcessContainer.setLayout(new java.awt.CardLayout());
         jSplitPane1.setRightComponent(userProcessContainer);
 
@@ -144,7 +150,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void ProfessorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfessorBtnActionPerformed
         // TODO add your handling code here:
 
-        UserInterface.LoginPage.ProfessorLoginPage panel = new UserInterface.LoginPage.ProfessorLoginPage(userProcessContainer,ph,st);
+        UserInterface.LoginPage.ProfessorLoginPage panel = new UserInterface.LoginPage.ProfessorLoginPage(userProcessContainer,ph,history,coursehistory,regcoursehistory);
         userProcessContainer.add("ProfessorLoginPage", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -152,7 +158,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void EmployerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployerBtnActionPerformed
         // TODO add your handling code here:
-        UserInterface.LoginPage.EmployerLoginJPanel panel = new UserInterface.LoginPage.EmployerLoginJPanel(userProcessContainer,ph,eh);
+         UserInterface.LoginPage.EmployerLoginJPanel panel = new UserInterface.LoginPage.EmployerLoginJPanel(userProcessContainer,ph,eh,coursehistory,regcoursehistory);
         userProcessContainer.add("EmployerLoginJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -160,7 +166,19 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void StudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentBtnActionPerformed
         // TODO add your handling code here:
+        UserInterface.LoginPage.StudentLoginJPanel panel = new UserInterface.LoginPage.StudentLoginJPanel(userProcessContainer, history,ph,neuid,coursehistory,regcoursehistory, sugg);
+        userProcessContainer.add("StudentLoginJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_StudentBtnActionPerformed
+
+    private void btnvalidationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvalidationActionPerformed
+        // TODO add your handling code here:
+        UserInterface.LoginPage.AdminloginJPanel  panel = new UserInterface.LoginPage.AdminloginJPanel(userProcessContainer, addlog, history,ph,neuid,coursehistory,regcoursehistory, sugg);
+        userProcessContainer.add("StudentLoginJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnvalidationActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,6 +219,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton EmployerBtn;
     private javax.swing.JButton ProfessorBtn;
     private javax.swing.JButton StudentBtn;
+    private javax.swing.JButton btnvalidation;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel userProcessContainer;
