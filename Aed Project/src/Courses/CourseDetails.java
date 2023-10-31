@@ -28,17 +28,18 @@ public class CourseDetails {
     private String Course_Type;
     private String startDateTime;
     private String endDateTime;
-    private String Course_grade;
+//    private String Course_grade;
     private double Course_rating;
     private double Course_credit_fees;
+    private String Course_status;
     private int Course_credit;
-    public String getCourse_grade() {
-        return Course_grade;
-    }
-
-    public void setCourse_grade(String Course_grade) {
-        this.Course_grade = Course_grade;
-    }
+//    public String getCourse_grade() {
+//        return Course_grade;
+//    }
+//
+//    public void setCourse_grade(String Course_grade) {
+//        this.Course_grade = Course_grade;
+//    }
 
     public double getCourse_rating() {
         return Course_rating;
@@ -172,7 +173,15 @@ public class CourseDetails {
         }
     }
 
-    public CourseDetails(String CRN, String Course_code, String Term_offered, String professor_name, String Coursename, String coursedepartment, String startDateTime, String endDateTime,String course_type,String course_description,int studentsregistered) {
+    public String getCourse_status() {
+        return Course_status;
+    }
+
+    public void setCourse_status(String Course_status) {
+        this.Course_status = Course_status;
+    }
+
+    public CourseDetails(String CRN, String Course_code, String Term_offered, String professor_name, String Coursename, String coursedepartment, String startDateTime, String endDateTime,String course_type,String course_description,int studentsregistered,String coursestatus) {
         this.CRN = CRN;
         this.Course_code = Course_code;
         this.Term_offered = Term_offered;
@@ -183,13 +192,32 @@ public class CourseDetails {
         this.endDateTime = endDateTime;
         this.Course_Type = course_type;
         this.course_description = course_description;
-        this.Course_grade = null;
+//        this.Course_grade = grade;
         this.Course_rating = Double.NaN;
         this.Course_credit_fees = 1700;
         this.Course_credit = 4;
         this.course_seats = 20;
         this.no_ofstudentsreg = studentsregistered;
-//        this.isregcourse = course_registered;
+        this.Course_status = coursestatus;
+    }
+    
+    public CourseDetails(String CRN, String Course_code, String Term_offered, String professor_name, String Coursename, String coursedepartment, String startDateTime, String endDateTime,String course_type,String course_description,int studentsregistered,int seats,int credits) {
+        this.CRN = CRN;
+        this.Course_code = Course_code;
+        this.Term_offered = Term_offered;
+        this.course_professor_name = professor_name;
+        this.Coursename = Coursename;
+        this.course_department = coursedepartment;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+        this.Course_Type = course_type;
+        this.course_description = course_description;
+//        this.Course_grade = grade;
+        this.Course_rating = Double.NaN;
+        this.Course_credit_fees = 1700;
+        this.Course_credit = credits;
+        this.course_seats = seats;
+        this.no_ofstudentsreg = studentsregistered;
     }
     
 }

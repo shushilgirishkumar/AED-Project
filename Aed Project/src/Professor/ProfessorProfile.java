@@ -25,6 +25,14 @@ public class ProfessorProfile {
     private String Prof_picture;
     private ArrayList<String> prof_oldPassword;
 
+    public String getProf_picture() {
+        return Prof_picture;
+    }
+
+    public void setProf_picture(String Prof_picture) {
+        this.Prof_picture = Prof_picture;
+    }
+
     public String getProf_password() {
         return Prof_password;
     }
@@ -96,7 +104,7 @@ public class ProfessorProfile {
         this.prof_oldPassword = prof_oldPassword;
     }
 
-    public ProfessorProfile(String Prof_first_name, String Prof_last_name, String Prof_mail, String Prof_id, String Prof_speciality, int Prof_experience, String Prof_resident, String Prof_password) {
+    public ProfessorProfile(String Prof_first_name, String Prof_last_name, String Prof_mail, String Prof_id, String Prof_speciality, int Prof_experience, String Prof_resident, String Prof_password,String picturepath) {
         this.Prof_first_name = Prof_first_name;
         this.Prof_last_name = Prof_last_name;
         this.Prof_neumail = Prof_mail;
@@ -105,8 +113,9 @@ public class ProfessorProfile {
         this.Prof_experience = Prof_experience;
         this.Prof_resident = Prof_resident;
         this.Prof_password = Prof_password;
+        this.Prof_picture = picturepath;
         prof_oldPassword = new ArrayList();
         prof_oldPassword.add(Prof_password);
     }
-    
+     
 }

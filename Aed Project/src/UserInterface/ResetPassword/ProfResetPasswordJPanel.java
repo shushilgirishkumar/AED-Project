@@ -2,12 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package UserInterface.SignupPage;
+package UserInterface.ResetPassword;
 
-import Courses.CourseCreation;
-import Professor.ProfessorCourses;
+
 import Professor.ProfessorHistory;
-import UserInterface.ProfessorHomePageJPanel;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -23,15 +21,12 @@ public class ProfResetPasswordJPanel extends javax.swing.JPanel {
      * Creates new form SignUp
      */
     private JPanel userProcessContainer;
-    private Professor.ProfessorCourses pd;
-    private Courses.CourseCreation cc;
     private Professor.ProfessorHistory ph;
-    public ProfResetPasswordJPanel(JPanel userProcessContainer,ProfessorHistory ph,CourseCreation cc,ProfessorCourses pd) {
+    public ProfResetPasswordJPanel(JPanel userProcessContainer,ProfessorHistory ph) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ph = ph;
-        this.cc = cc;
-        this.pd =pd;
+       
     }
 
     /**
@@ -79,12 +74,12 @@ public class ProfResetPasswordJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(123, 123, 123)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtneuid)
-                                    .addComponent(txtnewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)))))
+                                    .addComponent(txtnewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                                    .addComponent(txtneuid)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(179, 179, 179)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(529, Short.MAX_VALUE))
+                .addContainerGap(502, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,10 +115,10 @@ public class ProfResetPasswordJPanel extends javax.swing.JPanel {
             oldPwd.add(prof_newpassword);
             professor_p.setProf_oldPassword(oldPwd);
             JOptionPane.showMessageDialog(this,"Password is updated");
-            UserInterface.LoginPage.ProfessorLoginPage panel = new UserInterface.LoginPage.ProfessorLoginPage(userProcessContainer,ph,cc,pd);
-            userProcessContainer.add("ProfessorLoginPage", panel);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
+//            UserInterface.LoginPage.ProfessorLoginPage panel = new UserInterface.LoginPage.ProfessorLoginPage(userProcessContainer,ph);
+//            userProcessContainer.add("ProfessorLoginPage", panel);
+//            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//            layout.next(userProcessContainer);
         }
 
     }//GEN-LAST:event_UpdateBtnActionPerformed

@@ -4,13 +4,12 @@
  */
 package UserInterface;
 
-import Courses.CourseCreation;
-import Professor.ProfessorCourses;
+
+import Employer.EmployerHistory;
 import Professor.ProfessorHistory;
-import Professor.ProfessorProfile;
+import Student.Student;
 import java.awt.CardLayout;
-import java.util.List;
-import javax.swing.JPanel;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,17 +18,34 @@ import javax.swing.JPanel;
 public class MainJFrame extends javax.swing.JFrame {
 
     
-    private Professor.ProfessorCourses pd;
-    private Courses.CourseCreation cc; 
-    private Professor.ProfessorHistory prof_h;
+    private Professor.ProfessorHistory ph;
+    private Employer.EmployerHistory eh;
+    private ArrayList<Student> st;
 
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
-        this.prof_h = new ProfessorHistory();
+        this.ph = new ProfessorHistory();
+        this.eh = new EmployerHistory();
+        this.st = new ArrayList<>();
+        Student s = new Student("shushil", "23", "COE", "Project Management", "FALL", "002817660", "shushil123");
+        Student s1 = new Student("girish", "26", "COE", "Project Management", "FALL", "002817660", "girish123");
         
+       st.add(s);
+       st.add(s1);
+        for(Student s3 : st){
+            ArrayList<Courses.CourseDetails> clists = s3.getRegcourselist();
+            int no= 0;
+            for(Courses.CourseDetails c : ph.getCoursehistory()){
+                if(c.getCourse_department().equals(s3.getSpecalization())){
+                    clists.add(c);
+                    c.setNo_ofstudentsreg(++no);
+                }
+            }
+            s3.setRegcourselist(clists);
+        }
     }
 
     /**
@@ -128,7 +144,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void ProfessorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfessorBtnActionPerformed
         // TODO add your handling code here:
 
-        UserInterface.LoginPage.ProfessorLoginPage panel = new UserInterface.LoginPage.ProfessorLoginPage(userProcessContainer,prof_h,cc,pd);
+        UserInterface.LoginPage.ProfessorLoginPage panel = new UserInterface.LoginPage.ProfessorLoginPage(userProcessContainer,ph,st);
         userProcessContainer.add("ProfessorLoginPage", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -136,6 +152,10 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void EmployerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployerBtnActionPerformed
         // TODO add your handling code here:
+        UserInterface.LoginPage.EmployerLoginJPanel panel = new UserInterface.LoginPage.EmployerLoginJPanel(userProcessContainer,ph,eh);
+        userProcessContainer.add("EmployerLoginJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_EmployerBtnActionPerformed
 
     private void StudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentBtnActionPerformed

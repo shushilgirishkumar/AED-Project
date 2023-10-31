@@ -4,11 +4,11 @@
  */
 package UserInterface.LoginPage;
 
-import Courses.CourseCreation;
-import Professor.ProfessorCourses;
 import Professor.ProfessorHistory;
-import UserInterface.ProfessorHomePageJPanel;
+import Student.Student;
+import UserInterface.HomePage.ProfessorHomePageJPanel;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -21,16 +21,14 @@ public class ProfessorLoginPage extends javax.swing.JPanel {
     /**
      * Creates new form ProfessorLoginPage
      */
+     private ArrayList<Student> st;
     private JPanel userProcessContainer;
-    private Professor.ProfessorCourses pd;
-    private Courses.CourseCreation cc;
     private Professor.ProfessorHistory ph;
-    public ProfessorLoginPage(JPanel userProcessContainer,ProfessorHistory ph,CourseCreation cc,ProfessorCourses pd) {
+    public ProfessorLoginPage(JPanel userProcessContainer,ProfessorHistory ph,ArrayList<Student> s) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ph = ph;
-        this.cc = cc;
-        this.pd =pd;
+        this.st = s;
     }
 
     /**
@@ -48,8 +46,9 @@ public class ProfessorLoginPage extends javax.swing.JPanel {
         txtPassword = new javax.swing.JTextField();
         LoginBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        ResetPasswordBtn = new javax.swing.JButton();
         BackBtn = new javax.swing.JButton();
+        SignupBtn = new javax.swing.JButton();
 
         lbLname.setText("Password:");
 
@@ -70,10 +69,10 @@ public class ProfessorLoginPage extends javax.swing.JPanel {
 
         jLabel1.setText("Professor Login");
 
-        jButton2.setText("Reset Password?");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        ResetPasswordBtn.setText("Reset Password?");
+        ResetPasswordBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                ResetPasswordBtnActionPerformed(evt);
             }
         });
 
@@ -81,6 +80,13 @@ public class ProfessorLoginPage extends javax.swing.JPanel {
         BackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackBtnActionPerformed(evt);
+            }
+        });
+
+        SignupBtn.setText("Signup");
+        SignupBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SignupBtnActionPerformed(evt);
             }
         });
 
@@ -97,7 +103,7 @@ public class ProfessorLoginPage extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbLname, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton2))
+                                    .addComponent(ResetPasswordBtn))
                                 .addGap(97, 97, 97)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(LoginBtn)
@@ -108,8 +114,10 @@ public class ProfessorLoginPage extends javax.swing.JPanel {
                         .addGap(376, 376, 376)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(BackBtn)))
+                        .addGap(103, 103, 103)
+                        .addComponent(BackBtn)
+                        .addGap(152, 152, 152)
+                        .addComponent(SignupBtn)))
                 .addContainerGap(270, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -133,10 +141,12 @@ public class ProfessorLoginPage extends javax.swing.JPanel {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LoginBtn)
-                    .addComponent(jButton2))
-                .addGap(145, 145, 145)
-                .addComponent(BackBtn)
-                .addContainerGap(207, Short.MAX_VALUE))
+                    .addComponent(ResetPasswordBtn))
+                .addGap(90, 90, 90)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BackBtn)
+                    .addComponent(SignupBtn))
+                .addContainerGap(262, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -162,38 +172,22 @@ public class ProfessorLoginPage extends javax.swing.JPanel {
         }
          txtneuid.setText("");
          txtPassword.setText("");
-         ProfessorHomePageJPanel panel = new ProfessorHomePageJPanel(userProcessContainer,ph,cc,pd,prof_neuid);
+         ProfessorHomePageJPanel panel = new ProfessorHomePageJPanel(userProcessContainer,ph,prof_neuid,st);
          userProcessContainer.add("ProfessorHomePageJPanel", panel);
          CardLayout layout = (CardLayout) userProcessContainer.getLayout();
          layout.next(userProcessContainer); 
          
-//        for(Professor.ProfessorProfile p: ph.getHistory_professor()){
-//            if(prof_neuid.equals(p.getProf_id()) && p.getProf_password().equals(prof_password)){
-//                JOptionPane.showMessageDialog(this,"Access Granted");
-//                txtneuid.setText("");
-//                txtPassword.setText("");
-//                 ProfessorHomePageJPanel panel = new ProfessorHomePageJPanel(userProcessContainer,ph,cc,pd,prof_neuid);
-//                userProcessContainer.add("ProfessorHomePageJPanel", panel);
-//                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//                layout.next(userProcessContainer); 
-//                break;
-//                }
-//            else{
-//                 JOptionPane.showMessageDialog(this,"Access Denied");
-//                 txtneuid.setText("");
-//                 txtPassword.setText("");
-//            }
-//        }
+
     }//GEN-LAST:event_LoginBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void ResetPasswordBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetPasswordBtnActionPerformed
         // TODO add your handling code here:
-         UserInterface.SignupPage.ProfResetPasswordJPanel panel = new UserInterface.SignupPage.ProfResetPasswordJPanel(userProcessContainer,ph,cc,pd);
+         UserInterface.ResetPassword.ProfResetPasswordJPanel panel = new UserInterface.ResetPassword.ProfResetPasswordJPanel(userProcessContainer,ph);
          userProcessContainer.add("ProfResetPasswordJPanel", panel);
          CardLayout layout = (CardLayout) userProcessContainer.getLayout();
          layout.next(userProcessContainer); 
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_ResetPasswordBtnActionPerformed
 
     private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
         // TODO add your handling code here:
@@ -202,11 +196,20 @@ public class ProfessorLoginPage extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_BackBtnActionPerformed
 
+    private void SignupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignupBtnActionPerformed
+        // TODO add your handling code here:
+         UserInterface.SignupPage.ProfessorSignupJPanel panel = new UserInterface.SignupPage.ProfessorSignupJPanel(userProcessContainer,ph);
+         userProcessContainer.add("ProfResetPasswordJPanel", panel);
+         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+         layout.next(userProcessContainer); 
+    }//GEN-LAST:event_SignupBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackBtn;
     private javax.swing.JButton LoginBtn;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton ResetPasswordBtn;
+    private javax.swing.JButton SignupBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbFname;
     private javax.swing.JLabel lbLname;

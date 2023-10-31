@@ -4,6 +4,12 @@
  */
 package UserInterface.LoginPage;
 
+import Employer.JobRoles;
+import Professor.ProfessorHistory;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 
 
 /**
@@ -15,9 +21,20 @@ public class EmployerLoginJPanel extends javax.swing.JPanel {
     /**
      * Creates new form EmployerLoginJPanel
      */
-    
-    public EmployerLoginJPanel() {
+    private JPanel userProcessContainer;
+    private Professor.ProfessorHistory ph;
+    private Employer.EmployerHistory eh;
+    public EmployerLoginJPanel(JPanel userProcessContainer, ProfessorHistory ph, Employer.EmployerHistory eh) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.ph = ph;
+        this.eh = eh;
+        for(Employer.EmployerJobRoles empjroles: eh.getEmployerhistory()){
+            System.out.println(empjroles.getEmployer_name());
+            for(JobRoles j:empjroles.getEmp_rolelists()){
+                System.out.println(j.getRole_name());
+            }
+        }
     }
 
     /**
@@ -29,41 +46,162 @@ public class EmployerLoginJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        txtPassword = new javax.swing.JTextField();
+        LoginBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        SignupBtn = new javax.swing.JButton();
+        ResetPasswordBtn = new javax.swing.JButton();
+        lbLname = new javax.swing.JLabel();
+        lbFname = new javax.swing.JLabel();
+        txtemployerid = new javax.swing.JTextField();
 
-        jButton1.setText("Login");
+        LoginBtn.setText("Login");
+        LoginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginBtnActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setText("Employer");
+        jLabel1.setText("Employer Login");
+
+        SignupBtn.setText("Signup");
+        SignupBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SignupBtnActionPerformed(evt);
+            }
+        });
+
+        ResetPasswordBtn.setText("Reset Password?");
+        ResetPasswordBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ResetPasswordBtnActionPerformed(evt);
+            }
+        });
+
+        lbLname.setText("Password:");
+
+        lbFname.setText("Employer id:");
+
+        txtemployerid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtemployeridActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(174, 174, 174)
+                .addComponent(ResetPasswordBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtemployerid, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(LoginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(226, 226, 226))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(197, 197, 197)))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(290, 290, 290)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(293, 293, 293)
+                        .addComponent(SignupBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(299, 299, 299)
-                        .addComponent(jButton1)))
-                .addContainerGap(409, Short.MAX_VALUE))
+                        .addGap(316, 316, 316)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(190, 190, 190)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lbFname)
+                        .addComponent(lbLname, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(506, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(114, 114, 114))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addComponent(txtemployerid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LoginBtn)
+                    .addComponent(ResetPasswordBtn))
+                .addGap(87, 87, 87)
+                .addComponent(SignupBtn)
+                .addGap(28, 28, 28))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(123, 123, 123)
+                    .addComponent(lbFname)
+                    .addGap(18, 18, 18)
+                    .addComponent(lbLname)
+                    .addContainerGap(193, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
+        // TODO add your handling code here:
+        String empid = txtemployerid.getText();
+        String prof_password = txtPassword.getText();
+        Employer.EmployerProfile e = eh.SearchEmployerProfilebyid(empid);
+        if(e==null){
+            JOptionPane.showMessageDialog(this,"Access Denied");
+        }
+        else{
+            if(e.getEmployer_password().equals(prof_password)){
+                JOptionPane.showMessageDialog(this,"Access Granted");
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"Incorrect password!! Please Try again");
+            }
+        }
+        txtemployerid.setText("");
+        txtPassword.setText("");
+        UserInterface.HomePage.EmployerHomepageJPanel panel = new UserInterface.HomePage.EmployerHomepageJPanel(userProcessContainer,ph,eh,empid);
+        userProcessContainer.add("ProfessorHomePageJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_LoginBtnActionPerformed
+
+    private void SignupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignupBtnActionPerformed
+        // TODO add your handling code here:
+        UserInterface.SignupPage.EmployerSignupJPanel panel = new UserInterface.SignupPage.EmployerSignupJPanel(userProcessContainer,ph,eh);
+        userProcessContainer.add("EmployerSignupJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_SignupBtnActionPerformed
+
+    private void ResetPasswordBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetPasswordBtnActionPerformed
+        // TODO add your handling code here:
+        UserInterface.ResetPassword.EmployerResetPasswordJPanel panel = new UserInterface.ResetPassword.EmployerResetPasswordJPanel(userProcessContainer,ph,eh);
+        userProcessContainer.add("EmployerResetPasswordJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+
+    }//GEN-LAST:event_ResetPasswordBtnActionPerformed
+
+    private void txtemployeridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtemployeridActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtemployeridActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton LoginBtn;
+    private javax.swing.JButton ResetPasswordBtn;
+    private javax.swing.JButton SignupBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lbFname;
+    private javax.swing.JLabel lbLname;
+    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtemployerid;
     // End of variables declaration//GEN-END:variables
 }

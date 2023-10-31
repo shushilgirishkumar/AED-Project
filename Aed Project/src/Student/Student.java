@@ -4,6 +4,9 @@
  */
 package Student;
 
+import Courses.CourseDetails;
+import java.util.ArrayList;
+
 /**
  *
  * @author shush
@@ -13,12 +16,10 @@ public class Student {
     private String age;
     private String Campus;
     private String Specalization;
-    private String Semester;
     private String Term;
-    private String Acceptedyear;
-    private String Gradyear;
     private String NEUID;
     private String Password;
+    private ArrayList<Courses.CourseDetails> regcourselist;
 
     public String getName() {
         return name;
@@ -52,14 +53,7 @@ public class Student {
         this.Specalization = Specalization;
     }
 
-    public String getSemester() {
-        return Semester;
-    }
-
-    public void setSemester(String Semester) {
-        this.Semester = Semester;
-    }
-
+   
     public String getTerm() {
         return Term;
     }
@@ -67,27 +61,7 @@ public class Student {
     public void setTerm(String Term) {
         this.Term = Term;
     }
-
-    public String getAcceptedyear() {
-        return Acceptedyear;
-    }
-
-    public void setAcceptedyear(String Acceptedyear) {
-        this.Acceptedyear = Acceptedyear;
-    }
-
-    public String getGradyear() {
-        return Gradyear;
-    }
-
-    public void setGradyear(String Gradyear) {
-        this.Gradyear = Gradyear;
-    }
-
     
-   
-    
-
     public String getNEUID() {
         return NEUID;
     }
@@ -103,16 +77,33 @@ public class Student {
     public void setPassword(String Password) {
         this.Password = Password;
     }
-    
-     public Student(String name, String age, String Campus, String Specalization, String Semester, String Term, String Acceptedyear, String Gradyear, String NEUID, String Password){
+
+    public ArrayList<CourseDetails> getRegcourselist() {
+        return regcourselist;
+    }
+
+    public void setRegcourselist(ArrayList<CourseDetails> regcourselist) {
+        this.regcourselist = regcourselist;
+    }
+
+    public Student(String name, String age, String Campus, String Specalization, String Term, String NEUID, String Password) {
         this.name = name;
         this.age = age;
         this.Campus = Campus;
-        this.Acceptedyear = Acceptedyear;
-        this.Term = Term;
-        this.Semester = Semester;
         this.Specalization = Specalization;
+        this.Term = Term;
         this.NEUID = NEUID;
         this.Password = Password;
+        this.regcourselist = new ArrayList<>();
     }
+//    public CourseDetails SearchCourses(String deptname){
+//        for(CourseDetails c : this.regcourselist){
+//            if(deptname)
+//        }
+//    }
+    
+//    public void AddCourses(CourseDetails c){
+//        AddC
+//    }
+     
 }
