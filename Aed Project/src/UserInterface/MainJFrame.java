@@ -4,13 +4,12 @@
  */
 package UserInterface;
 
-import Courses.CourseCreation;
-import Professor.ProfessorCourses;
+
+import Employer.EmployerHistory;
 import Professor.ProfessorHistory;
-import Professor.ProfessorProfile;
+import Student.Studentde;
 import java.awt.CardLayout;
-import java.util.List;
-import javax.swing.JPanel;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,17 +18,29 @@ import javax.swing.JPanel;
 public class MainJFrame extends javax.swing.JFrame {
 
     
-    private Professor.ProfessorCourses pd;
-    private Courses.CourseCreation cc; 
-    private Professor.ProfessorHistory prof_h;
+   
+  
+    
+
+    Professor.ProfessorHistory ph;
+     Employer.EmployerHistory eh;
+    Professor.ProfessorHistory history;
+        Professor.ProfessorHistory coursehistory;
+        Professor.ProfessorHistory regcoursehistory;
+         Professor.ProfessorHistory sugg;
 
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
-        this.prof_h = new ProfessorHistory();
-        
+        history = new ProfessorHistory();
+        coursehistory = new ProfessorHistory();
+        regcoursehistory = new ProfessorHistory();
+        sugg = new ProfessorHistory();
+        eh = new EmployerHistory();
+        ph = new ProfessorHistory();
+
     }
 
     /**
@@ -52,7 +63,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        jPanel1.setBackground(new java.awt.Color(255, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         ProfessorBtn.setText("Professor Profle");
         ProfessorBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -127,18 +138,27 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void ProfessorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfessorBtnActionPerformed
         // TODO add your handling code here:
-        ViewJPanel panel = new ViewJPanel(userProcessContainer,prof_h,cc,pd);
-        userProcessContainer.add("ViewJPanel", panel);
+
+        UserInterface.LoginPage.ProfessorLoginPage panel = new UserInterface.LoginPage.ProfessorLoginPage(userProcessContainer,ph,history);
+        userProcessContainer.add("ProfessorLoginPage", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_ProfessorBtnActionPerformed
 
     private void EmployerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployerBtnActionPerformed
         // TODO add your handling code here:
+        UserInterface.LoginPage.EmployerLoginJPanel panel = new UserInterface.LoginPage.EmployerLoginJPanel(userProcessContainer,ph,eh);
+        userProcessContainer.add("EmployerLoginJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_EmployerBtnActionPerformed
 
     private void StudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentBtnActionPerformed
         // TODO add your handling code here:
+        UserInterface.LoginPage.StudentLoginJPanel panel = new UserInterface.LoginPage.StudentLoginJPanel(userProcessContainer,ph,history);
+        userProcessContainer.add("StudentLoginJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_StudentBtnActionPerformed
 
     /**

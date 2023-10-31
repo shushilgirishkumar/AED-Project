@@ -3,18 +3,35 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package UserInterface.LoginPage;
-
+import Professor.ProfessorHistory;
+import Student.Studentde;
+import UserInterface.HomePage.ProfessorHomePageJPanel;
+import java.awt.CardLayout;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 /**
  *
  * @author shush
  */
 public class StudentLoginJPanel extends javax.swing.JPanel {
 
+    Professor.ProfessorHistory ph;
+     Employer.EmployerHistory eh;
+    Professor.ProfessorHistory history;
+        Professor.ProfessorHistory coursehistory;
+        Professor.ProfessorHistory regcoursehistory;
+         Professor.ProfessorHistory sugg;
+         JPanel userProcessContainer;
+    
     /**
      * Creates new form StudentLoginJPanel
      */
-    public StudentLoginJPanel() {
+    public StudentLoginJPanel(JPanel userProcessContainer,ProfessorHistory ph,ProfessorHistory history) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.ph = ph;
+        this.history = history;
     }
 
     /**
@@ -26,19 +43,118 @@ public class StudentLoginJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        LoginBtn = new javax.swing.JButton();
+        txtPassword = new javax.swing.JTextField();
+        txtneuid = new javax.swing.JTextField();
+        lbFname = new javax.swing.JLabel();
+        lbLname = new javax.swing.JLabel();
+
+        jLabel1.setText("Student Login");
+
+        LoginBtn.setText("Login");
+        LoginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginBtnActionPerformed(evt);
+            }
+        });
+
+        txtneuid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtneuidActionPerformed(evt);
+            }
+        });
+
+        lbFname.setText("Student neuid:");
+
+        lbLname.setText("Password:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(239, 239, 239)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbFname)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbLname, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(131, 131, 131)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LoginBtn)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtneuid)
+                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(jLabel1)))
+                .addContainerGap(261, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(jLabel1)
+                .addGap(76, 76, 76)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(lbFname))
+                    .addComponent(txtneuid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(lbLname))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(34, 34, 34)
+                .addComponent(LoginBtn)
+                .addContainerGap(340, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
+        // TODO add your handling code here:
+        int n=0;
+        String p_neuid = txtneuid.getText();
+        String p_password = txtPassword.getText();
+        for (Student.Studentde p : history.getHistory())
+        {
+            if(p.getNEUID().equals(p_neuid) && p.getPassword().equals(p_password))
+            {
+                JOptionPane.showMessageDialog(this,"Access Granted");
+                Studenth panel = new Studenth(userProcessContainer,ph,p_neuid,history);
+                userProcessContainer.add("ProfessorHomePageJPanel", panel);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+                n++;
+
+            }
+        }
+              
+        if(n==0)
+        {
+                            JOptionPane.showMessageDialog(this,"Access Denied");
+                                n=0;
+        }
+        txtneuid.setText("");
+        txtPassword.setText("");
+        
+
+    }//GEN-LAST:event_LoginBtnActionPerformed
+
+    private void txtneuidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtneuidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtneuidActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton LoginBtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lbFname;
+    private javax.swing.JLabel lbLname;
+    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtneuid;
     // End of variables declaration//GEN-END:variables
 }
