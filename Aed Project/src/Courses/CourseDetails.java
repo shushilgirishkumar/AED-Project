@@ -28,18 +28,18 @@ public class CourseDetails {
     private String Course_Type;
     private String startDateTime;
     private String endDateTime;
-//    private String Course_grade;
+    private String Course_grade;
     private double Course_rating;
     private double Course_credit_fees;
     private String Course_status;
     private int Course_credit;
-//    public String getCourse_grade() {
-//        return Course_grade;
-//    }
-//
-//    public void setCourse_grade(String Course_grade) {
-//        this.Course_grade = Course_grade;
-//    }
+    public String getCourse_grade() {
+        return Course_grade;
+    }
+
+    public void setCourse_grade(String Course_grade) {
+        this.Course_grade = Course_grade;
+    }
 
     public double getCourse_rating() {
         return Course_rating;
